@@ -11,6 +11,7 @@ import com.palmergames.bukkit.towny.TownySettings;
 import com.palmergames.bukkit.towny.object.Resident;
 import com.palmergames.bukkit.util.BukkitTools;
 
+@SuppressWarnings("deprecation")
 public class bPermsSource extends TownyPermissionSource {
 
 	public bPermsSource(Towny towny, Plugin test) {

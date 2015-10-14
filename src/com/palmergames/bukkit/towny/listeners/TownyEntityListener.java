@@ -186,6 +186,7 @@ public class TownyEntityListener implements Listener {
 					/*
 					 * Fetch the players cache
 					 */
+					@SuppressWarnings("unused")
 					PlayerCache cache = plugin.getCache(player);
 
 					event.setCancelled(true);

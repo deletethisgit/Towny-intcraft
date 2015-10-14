@@ -137,6 +137,7 @@ public class PEXSource extends TownyPermissionSource {
 	 * @param player
 	 * @return Name of the players group
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	public String getPlayerGroup(Player player) {
 
@@ -152,6 +153,7 @@ public class PEXSource extends TownyPermissionSource {
 	 * @param player
 	 * @return Array of groups for this player
 	 */
+	@SuppressWarnings("deprecation")
 	public PermissionGroup[] getPlayerGroups(Player player) {
 
 		PermissionManager pexPM = PermissionsEx.getPermissionManager();

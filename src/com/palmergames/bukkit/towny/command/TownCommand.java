@@ -1379,7 +1379,7 @@ public class TownCommand extends BaseCommand implements CommandExecutor {
 							chunk.load();
 						// Cause an essentials exception if in cooldown.
 						teleport.cooldown(true);
-						teleport.teleport(spawnLoc, null);
+						teleport.teleport(spawnLoc, null, null);
 					}
 				} catch (Exception e) {
 					TownyMessaging.sendErrorMsg(player, "Error: " + e.getMessage());
