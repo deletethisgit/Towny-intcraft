@@ -39,8 +39,8 @@ import com.palmergames.util.StringMgmt;
 import ca.xshade.bukkit.questioner.Questioner;
 import ca.xshade.questionmanager.Option;
 import ca.xshade.questionmanager.Question;
-import io.github.deletethisgit.townyintcraft.config.IntcraftConfig;
-import io.github.deletethisgit.townyintcraft.util.InventoryHelper;
+import intcraft.config.IntcraftConfig;
+import intcraft.util.InventoryHelper;
 
 /**
  * Send a list of all nation commands to player Command: /nation ?

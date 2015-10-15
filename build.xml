@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Towny" default="build" basedir=".">
+	<property file="build.properties"/>
+	<property name="stage" value="unknown"/>
+	<property name="stage" value="version"/>
 	<property name="jarname" value="Towny-intcraft"/>
 	<property name="src" location="src"/>
 	<property name="bin" location="bin"/>
@@ -29,7 +32,7 @@
 
 	<target name="build" depends="compile">
 		<mkdir dir="${build}"/>
-		<jar jarfile="${build}/${jarname}.jar">
+		<jar jarfile="${build}/${jarname}-${stage}_v${version}.jar">
 			<fileset dir="${bin}"/>
 			<fileset dir="./src" includes="ChangeLog.txt, ChangeLog-intcraft.txt, english.yml, german.yml, plugin.yml, spanish.yml, townyperms.yml"/>
 		</jar>

@@ -1,4 +1,4 @@
-package io.github.deletethisgit.townyintcraft.util;
+package intcraft.util;
 
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

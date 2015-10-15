@@ -1,4 +1,4 @@
-package io.github.deletethisgit.townyintcraft.command;
+package intcraft;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +14,8 @@ import com.palmergames.bukkit.towny.TownyMessaging;
 import com.palmergames.bukkit.towny.TownySettings;
 import com.palmergames.bukkit.util.ChatTools;
 
-import io.github.deletethisgit.townyintcraft.config.IntcraftConfig;
-import io.github.deletethisgit.townyintcraft.util.InventoryHelper;
+import intcraft.config.IntcraftConfig;
+import intcraft.util.InventoryHelper;
 
 public class DebugCommand implements CommandExecutor
 {

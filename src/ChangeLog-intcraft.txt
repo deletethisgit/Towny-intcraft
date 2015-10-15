@@ -1,2 +1,2 @@
-alpha_v0.01:
+alpha_v1:
 	- Added war fee requirement for setting a nation as enemy

@@ -1,4 +1,4 @@
-package io.github.deletethisgit.townyintcraft.config;
+package intcraft.config;
 
 import com.palmergames.bukkit.config.ConfigNodes;
 import com.palmergames.bukkit.towny.TownySettings;
