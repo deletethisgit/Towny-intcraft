@@ -24,3 +24,9 @@ alpha_1.0.7:
 	
 alpha_1.1.0:
 	- Updated to Towny release 0.90.0.0
+	
+alpha_1.1.1:
+	- Gave players access to some war fee information commands
+	- Added /intcraft warfee get [town]
+    - Refactored war fee related code a bit
+    - Fixed allies permissions to exclude native towns

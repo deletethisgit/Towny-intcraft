@@ -44,6 +44,7 @@ import ca.xshade.questionmanager.Option;
 import ca.xshade.questionmanager.Question;
 import intcraft.config.IntcraftConfig;
 import intcraft.util.InventoryHelper;
+import intcraft.util.WarFeeHelper;
 
 /**
  * Send a list of all nation commands to player Command: /nation ?
@@ -916,77 +917,75 @@ public class NationCommand extends BaseCommand implements CommandExecutor {
 	}
 
 	// what kind of logic flow you want, fam?
-	public void nationEnemy(Player player, Nation nation, List<Nation> enemies, boolean add)
+	public void nationEnemy(Player player, Nation ourNation, List<Nation> enemies, boolean add)
 	{
-		ArrayList<Nation> nationsToRemove = new ArrayList<Nation>();
-		for (Nation targetNation : enemies)
+		ArrayList<Nation> relationNotChangingNations = new ArrayList<Nation>();
+		for (Nation enemyNation : enemies)
 		{
 			try 
 			{
-				if (add && !nation.getEnemies().contains(targetNation)) 
+				if (add && !ourNation.getEnemies().contains(enemyNation)) 
 				{
 					boolean warFeeEnabled = IntcraftConfig.isWarFeeEnabled();
-					int warFee = IntcraftConfig.getWarFee();
-					int warFeeRatio = IntcraftConfig.getWarFeeRatio();
-					int actualWarFee = warFee - (warFeeRatio * targetNation.getNumResidents());
+					int actualWarFee = WarFeeHelper.getActualWarFeeFor(enemyNation);
 					if(warFeeEnabled && actualWarFee > 0)
 					{
 						int warFeeItemCount = InventoryHelper.getItemCount(player, IntcraftConfig.getWarFeeItem());
 						if(warFeeItemCount > actualWarFee)
 						{
 							InventoryHelper.removeItems(player, IntcraftConfig.getWarFeeItem(), actualWarFee);
-							nation.addEnemy(targetNation);
-							TownyMessaging.sendNationMessage(targetNation, String.format(TownySettings.getLangString("msg_added_enemy"), nation.getName()));
+							ourNation.addEnemy(enemyNation);
+							TownyMessaging.sendNationMessage(enemyNation, String.format(TownySettings.getLangString("msg_added_enemy"), ourNation.getName()));
 							// Remove any ally settings from the target nation
-							if (targetNation.hasAlly(nation))
-								nationAlly(player, targetNation, Arrays.asList(nation), false);
+							if (enemyNation.hasAlly(ourNation))
+								nationAlly(player, enemyNation, Arrays.asList(ourNation), false);
 						}
 						else
 						{
-							TownyMessaging.sendErrorMsg(player, String.format("Insufficient war funds! You need %s more %s in your inventory before you can declare war on %s!", actualWarFee - warFeeItemCount, IntcraftConfig.getWarFeeItem().toString(),targetNation.getName()));
-							nationsToRemove.add(targetNation);
+							TownyMessaging.sendErrorMsg(player, String.format("Insufficient war funds! You need %s more %s in your inventory before you can declare war on %s!", actualWarFee - warFeeItemCount, IntcraftConfig.getWarFeeItem().toString(),enemyNation.getName()));
+							relationNotChangingNations.add(enemyNation);
 						}
 					}
 					else
 					{
-						nation.addEnemy(targetNation);
-						TownyMessaging.sendNationMessage(targetNation, String.format(TownySettings.getLangString("msg_added_enemy"), nation.getName()));
+						ourNation.addEnemy(enemyNation);
+						TownyMessaging.sendNationMessage(enemyNation, String.format(TownySettings.getLangString("msg_added_enemy"), ourNation.getName()));
 						// Remove any ally settings from the target nation
-						if (targetNation.hasAlly(nation))
-							nationAlly(player, targetNation, Arrays.asList(nation), false);
+						if (enemyNation.hasAlly(ourNation))
+							nationAlly(player, enemyNation, Arrays.asList(ourNation), false);
 					}
 				} 
-				else if (add && nation.getEnemies().contains(targetNation))
+				else if (add && ourNation.getEnemies().contains(enemyNation))
 				{
-					nationsToRemove.add(targetNation);
-					TownyMessaging.sendErrorMsg(player, String.format("%s is already an enemy of your nation!", targetNation.getName()));
+					relationNotChangingNations.add(enemyNation);
+					TownyMessaging.sendErrorMsg(player, String.format("%s is already an enemy of your nation!", enemyNation.getName()));
 				}
-				else if (!add && !nation.getEnemies().contains(targetNation))
+				else if (!add && !ourNation.getEnemies().contains(enemyNation))
 				{
-					nationsToRemove.add(targetNation);
-					TownyMessaging.sendErrorMsg(player, String.format("You are already neutral towards %s!", targetNation.getName()));
+					relationNotChangingNations.add(enemyNation);
+					TownyMessaging.sendErrorMsg(player, String.format("You are already neutral towards %s!", enemyNation.getName()));
 				}
-				else if (!add && nation.getEnemies().contains(targetNation)) 
+				else if (!add && ourNation.getEnemies().contains(enemyNation)) 
 				{
-					nation.removeEnemy(targetNation);
-					TownyMessaging.sendNationMessage(targetNation, String.format(TownySettings.getLangString("msg_removed_enemy"), nation.getName()));
+					ourNation.removeEnemy(enemyNation);
+					TownyMessaging.sendNationMessage(enemyNation, String.format(TownySettings.getLangString("msg_removed_enemy"), ourNation.getName()));
 				}
 			} 
 			catch (AlreadyRegisteredException e) 
 			{
 				TownyMessaging.sendErrorMsg(player, TownySettings.getLangString("msg_invalid_name"));
-				nationsToRemove.add(targetNation);
+				relationNotChangingNations.add(enemyNation);
 			} 
 			catch (NotRegisteredException e) 
 			{
 				TownyMessaging.sendErrorMsg(player, TownySettings.getLangString("msg_invalid_name"));
-				nationsToRemove.add(targetNation);
+				relationNotChangingNations.add(enemyNation);
 			}
 		}
 
-		for (Nation nationToRemove : nationsToRemove)
+		for (Nation relationNotChangingNation : relationNotChangingNations)
 		{
-			enemies.remove(nationToRemove);	
+			enemies.remove(relationNotChangingNation);	
 		}
 
 		if (enemies.size() > 0) 
@@ -1007,7 +1006,7 @@ public class NationCommand extends BaseCommand implements CommandExecutor {
 			{
 				msg = String.format(TownySettings.getLangString("msg_enemy_to_neutral"), player.getName(), msg);
 			}
-			TownyMessaging.sendNationMessage(nation, ChatTools.color(msg));
+			TownyMessaging.sendNationMessage(ourNation, ChatTools.color(msg));
 			TownyUniverse.getDataSource().saveNations();
 			plugin.resetCache();
 		}

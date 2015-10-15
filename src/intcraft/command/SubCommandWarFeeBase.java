@@ -5,29 +5,28 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.palmergames.bukkit.towny.TownyMessaging;
-import com.palmergames.bukkit.towny.TownySettings;
 import com.palmergames.bukkit.util.ChatTools;
 
 import intcraft.config.IntcraftConfig;
 
-public class SubCommandDebugWarFee extends SubCommand
+public class SubCommandWarFeeBase extends SubCommand
 {
 	@Override
 	public String getPermission()
 	{
-		return "towny.intcraft.debug.warfee";
+		return "towny.intcraft.warfee.base";
 	}
 	
 	@Override
 	public String getDescription()
 	{
-		return "Gets the amount of war fee items required to start a war.";
+		return "Gets the base amount of war fee items required to start a war.";
 	}
 
 	@Override
 	public String getHelp()
 	{
-		return ChatTools.formatCommand(TownySettings.getLangString("admin_sing"), "/intcraft", "debug warfee", getDescription());
+		return ChatTools.formatCommand("", "/intcraft", "warfee base", getDescription());
 	}
 
 	@Override
@@ -40,7 +39,7 @@ public class SubCommandDebugWarFee extends SubCommand
 	public void onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
 		Player player = (Player) sender;
-		int warFee = IntcraftConfig.getWarFee();
-		TownyMessaging.sendMsg(player, "War fee: " + warFee);
+		int warFee = IntcraftConfig.getBaseWarFee();
+		TownyMessaging.sendMsg(player, "Base war fee: " + warFee);
 	}
 }

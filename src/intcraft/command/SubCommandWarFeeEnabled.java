@@ -5,32 +5,30 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.palmergames.bukkit.towny.TownyMessaging;
-import com.palmergames.bukkit.towny.TownySettings;
 import com.palmergames.bukkit.util.ChatTools;
 
 import intcraft.config.IntcraftConfig;
-import intcraft.util.InventoryHelper;
 
-public class SubCommandDebugWarFeeItemCount extends SubCommand
+public class SubCommandWarFeeEnabled extends SubCommand
 {
 	@Override
 	public String getPermission()
 	{
-		return "towny.intcraft.debug.warfeeitemcount";
+		return "towny.intcraft.warfee.enabled";
 	}
 	
 	@Override
 	public String getDescription()
 	{
-		return "Gets the number of war fee items in your inventory.";
+		return "Checks if war fees are enabled.";
 	}
 
 	@Override
 	public String getHelp()
 	{
-		return ChatTools.formatCommand(TownySettings.getLangString("admin_sing"), "/intcraft", "debug warfeeitemcount", getDescription());
+		return ChatTools.formatCommand("", "/intcraft", "warfee enabled", getDescription());
 	}
-	
+
 	@Override
 	public boolean isPlayerOnly()
 	{
@@ -41,7 +39,7 @@ public class SubCommandDebugWarFeeItemCount extends SubCommand
 	public void onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
 		Player player = (Player) sender;
-		int warFeeItemCount = InventoryHelper.getItemCount(player, IntcraftConfig.getWarFeeItem());
-		TownyMessaging.sendMsg(player,  IntcraftConfig.getWarFeeItem().toString() + ": " + warFeeItemCount);
+		boolean warFeeEnabled = IntcraftConfig.isWarFeeEnabled();
+		TownyMessaging.sendMsg(player, "War fee enabled: " + warFeeEnabled);
 	}
 }

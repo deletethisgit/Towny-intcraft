@@ -12,9 +12,9 @@ public class IntcraftConfig
 		return TownySettings.getBoolean(ConfigNodes.INTCRAFT_WAR_FEE_ENABLED);
 	}
 	
-	public static int getWarFee() 
+	public static int getBaseWarFee() 
 	{
-		return TownySettings.getInt(ConfigNodes.INTCRAFT_WAR_FEE);
+		return TownySettings.getInt(ConfigNodes.INTCRAFT_WAR_FEE_BASE);
 	}
 	
 	public static int getWarFeeRatio()

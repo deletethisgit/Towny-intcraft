@@ -1268,19 +1268,19 @@ public enum ConfigNodes {
 			"intcraft.war_fee_enabled",
 			"true",
 			"# Are war fees enabled?"),
-	INTCRAFT_WAR_FEE(
-			"intcraft.war_fee",
+	INTCRAFT_WAR_FEE_BASE(
+			"intcraft.war_fee_base",
 			"192",
-			"# Amount of war fee items required to add a nation as an enemy."),
+			"# Base amount of war fee items required to add a nation as an enemy."),
 	INTCRAFT_WAR_FEE_RATIO(
 			"intcraft.war_fee_ratio",
 			"0",
-			"# Subtracts this amount off of the cost of war for every resident in target nation.",
-			"# Eg: war fee - (war fee ratio * number of residents) = actual war fee"),
+			"# Subtracts this amount of items off of the war fee for every resident in the target nation.",
+			"# Eg: actual war fee = base war fee - (war fee ratio * number of residents)"),
 	INTCRAFT_WAR_FEE_ITEM(
 			"intcraft.war_fee_item",
 			"iron_ingot",
-			"# The item ID of the item used to pay war fees.");
+			"# The item ID of the item used to pay war fees. If the ID not recognized, it will default to iron ingots.");
 
 	private final String Root;
 	private final String Default;

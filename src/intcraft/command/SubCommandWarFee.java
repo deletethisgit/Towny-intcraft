@@ -9,32 +9,37 @@ import com.palmergames.bukkit.towny.TownyMessaging;
 import com.palmergames.bukkit.towny.TownySettings;
 import com.palmergames.bukkit.util.ChatTools;
 
-public class SubCommandDebug extends SubCommand
+public class SubCommandWarFee extends SubCommand
 {
 	private static HashMap<String, SubCommand> subCommands = new HashMap<String, SubCommand>();
 	
-	public SubCommandDebug()
+	public SubCommandWarFee()
 	{
-		subCommands.put("removewarfeeitems", new SubCommandDebugRemoveWarFeeItems());
-		subCommands.put("?", new SubCommandHelp("/intcraft debug", subCommands));
+		subCommands.put("enabled", new SubCommandWarFeeEnabled());
+		subCommands.put("base", new SubCommandWarFeeBase());
+		subCommands.put("item", new SubCommandWarFeeItem());
+		subCommands.put("ratio", new SubCommandWarFeeRatio());
+		subCommands.put("itemcount", new SubCommandWarFeeItemCount());
+		subCommands.put("get", new SubCommandWarFeeGet());
+		subCommands.put("?", new SubCommandHelp("/intcraft warfee", subCommands));
 	}
 	
 	@Override
 	public String getPermission()
 	{
-		return "towny.intcraft.debug";
+		return "towny.intcraft.warfee";
 	}
 	
 	@Override
 	public String getDescription()
 	{
-		return "List commands related to debugging.";
+		return "List commands related to war fees.";
 	}
 	
 	@Override
 	public String getHelp()
 	{
-		return ChatTools.formatCommand(TownySettings.getLangString("admin_sing"), "/intcraft", "debug ?", getDescription());
+		return ChatTools.formatCommand("", "/intcraft", "warfee ?", getDescription());
 	}
 
 	@Override

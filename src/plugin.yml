@@ -44,15 +44,21 @@ permissions:
         description: User is able to view command help information for all /intcraft commands.
         default: true
 
+    towny.intcraft.warfee.*:
+        description: User is able to use all /intcraft warfee commands.
+        default: true
+        children:
+            towny.intcraft.warfee.enabled: true
+            towny.intcraft.warfee.base: true
+            towny.intcraft.warfee.item: true
+            towny.intcraft.warfee.ratio: true
+            towny.intcraft.warfee.itemcount: true
+            towny.intcraft.warfee.get: true
+
     towny.intcraft.debug.*:
         description: User is able to use all /intcraft debug commands.
         default: op
         children:
-            towny.intcraft.debug.iswarfeeenabled: true
-            towny.intcraft.debug.warfee: true
-            towny.intcraft.debug.warfeeitem: true
-            towny.intcraft.debug.warfeeitemratio: true
-            towny.intcraft.debug.warfeeitemcount: true
             towny.intcraft.debug.removewarfeeitems: true
 
     towny.admin:
