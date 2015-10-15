@@ -12,3 +12,6 @@ alpha_1.0.3:
 	
 alpha_1.0.4:
 	- Fixed /intcraft debug removewarfeeitems displaying incorrect message
+	
+alpha_1.0.5:
+	- Added NumberFormatException handling to SubCommandDebugRemoveWarFeeItems.java

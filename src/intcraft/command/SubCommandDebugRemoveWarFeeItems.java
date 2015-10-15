@@ -43,7 +43,19 @@ public class SubCommandDebugRemoveWarFeeItems extends SubCommand
 		Player player = (Player) sender;
 		if(args.length >= 3)
 		{
-			InventoryHelper.removeItems(player, IntcraftConfig.getWarFeeItem(), Integer.parseInt(args[2]));
+			int amount = 0;
+			
+			try
+			{
+				amount = Integer.parseInt(args[2]);
+			}
+			catch (NumberFormatException e)
+			{
+				TownyMessaging.sendErrorMsg(sender, TownySettings.getLangString("msg_error_must_be_int"));
+				return;
+			}
+			
+			InventoryHelper.removeItems(player, IntcraftConfig.getWarFeeItem(), amount);
 		}
 		else
 		{
