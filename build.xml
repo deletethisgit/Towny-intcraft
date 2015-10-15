@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Towny" default="build" basedir=".">
-	<property name="pluginname" value="Towny-intcraft"/>
+	<property name="jarname" value="Towny-intcraft"/>
 	<property name="src" location="src"/>
 	<property name="bin" location="bin"/>
 	<property name="build" location="build"/>
-
+	
 	<target name="init">
 		<mkdir dir="${bin}"/>
 	</target>
@@ -29,18 +29,13 @@
 
 	<target name="build" depends="compile">
 		<mkdir dir="${build}"/>
-		<jar jarfile="${build}/${pluginname}.jar">
+		<jar jarfile="${build}/${jarname}.jar">
 			<fileset dir="${bin}"/>
-			<fileset dir="./src" includes="ChangeLog.txt"/>
-			<fileset dir="./src" includes="english.yml"/>
-			<fileset dir="./src" includes="german.yml"/>
-			<fileset dir="./src" includes="plugin.yml"/>
-			<fileset dir="./src" includes="spanish.yml"/>
-			<fileset dir="./src" includes="townyperms.yml"/>
+			<fileset dir="./src" includes="ChangeLog.txt, english.yml, german.yml, plugin.yml, spanish.yml, townyperms.yml"/>
 		</jar>
 	</target>
 	
-	<target name="clean">
+	<target name="clean" depends="init">
 		<delete dir="${bin}"/>
 	</target>
 </project>

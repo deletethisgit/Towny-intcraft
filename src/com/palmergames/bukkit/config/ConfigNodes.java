@@ -1191,7 +1191,27 @@ public enum ConfigNodes {
 			"war.warzone.explosions_regen_blocks",
 			"true",
 			"# TODO: Blocks will not regen as of yet. Stay tuned for later changes.",
-			"# Only under affect when explosions_break_blocks is true."), ;
+			"# Only under affect when explosions_break_blocks is true."),
+	INTCRAFT(
+			"intcraft",
+			"",
+			"",
+			"",
+			"  ############################################################",
+			"  # +------------------------------------------------------+ #",
+			"  # |                     /int/craft settings              | #",
+			"  # +------------------------------------------------------+ #",
+			"############################################################",
+			""),
+	INTCRAFT_WAR_FEE(
+			"intcraft.war_fee",
+			"320",
+			"# Amount of iron ingots required to add a nation as an enemy."),
+	INTCRAFT_WAR_FEE_RATIO(
+			"intcraft.war_fee_ratio",
+			"20",
+			"# Subtracts this amount off of the cost of war for every resident in target nation.",
+			"# Eg: war fee - (war fee ratio * number of residents) = actual war fee");
 
 	private final String Root;
 	private final String Default;

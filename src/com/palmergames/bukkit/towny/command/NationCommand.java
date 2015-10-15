@@ -6,15 +6,12 @@ import java.util.List;
 
 import javax.naming.InvalidNameException;
 
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
-
-import ca.xshade.bukkit.questioner.Questioner;
-import ca.xshade.questionmanager.Option;
-import ca.xshade.questionmanager.Question;
 
 import com.palmergames.bukkit.towny.Towny;
 import com.palmergames.bukkit.towny.TownyEconomyHandler;
@@ -38,6 +35,12 @@ import com.palmergames.bukkit.util.ChatTools;
 import com.palmergames.bukkit.util.Colors;
 import com.palmergames.bukkit.util.NameValidation;
 import com.palmergames.util.StringMgmt;
+
+import ca.xshade.bukkit.questioner.Questioner;
+import ca.xshade.questionmanager.Option;
+import ca.xshade.questionmanager.Question;
+import io.github.deletethisgit.townyintcraft.config.IntcraftConfig;
+import io.github.deletethisgit.townyintcraft.util.InventoryHelper;
 
 /**
  * Send a list of all nation commands to player Command: /nation ?
@@ -897,51 +900,101 @@ public class NationCommand extends BaseCommand implements CommandExecutor {
 
 	}
 
-	public void nationEnemy(Player player, Nation nation, List<Nation> enemies, boolean add) {
-
-		ArrayList<Nation> remove = new ArrayList<Nation>();
+	// what kind of logic flow you want, fam?
+	public void nationEnemy(Player player, Nation nation, List<Nation> enemies, boolean add)
+	{
+		ArrayList<Nation> nationsToRemove = new ArrayList<Nation>();
 		for (Nation targetNation : enemies)
-			try {
-				if (add && !nation.getEnemies().contains(targetNation)) {
-					nation.addEnemy(targetNation);
-					TownyMessaging.sendNationMessage(targetNation, String.format(TownySettings.getLangString("msg_added_enemy"), nation.getName()));
-					// Remove any ally settings from the target nation
-					if (targetNation.hasAlly(nation))
-						nationAlly(player, targetNation, Arrays.asList(nation), false);
-
-				} else if (nation.getEnemies().contains(targetNation)) {
+		{
+			try 
+			{
+				if (add && !nation.getEnemies().contains(targetNation)) 
+				{
+					int warFee = IntcraftConfig.getWarFee();
+					int warFeeRatio = IntcraftConfig.getWarFeeRatio();
+					int actualWarFee = warFee - (warFeeRatio * targetNation.getNumResidents());
+					if(actualWarFee > 0)
+					{
+						int ingotCount = InventoryHelper.getItemCount(player, Material.IRON_INGOT);
+						if(ingotCount > actualWarFee)
+						{
+							InventoryHelper.removeItems(player, Material.IRON_INGOT, actualWarFee);
+							nation.addEnemy(targetNation);
+							TownyMessaging.sendNationMessage(targetNation, String.format(TownySettings.getLangString("msg_added_enemy"), nation.getName()));
+							// Remove any ally settings from the target nation
+							if (targetNation.hasAlly(nation))
+								nationAlly(player, targetNation, Arrays.asList(nation), false);
+						}
+						else
+						{
+							TownyMessaging.sendErrorMsg(player, String.format("Insufficient war funds! You need %s more iron ingots in your inventory to declare %s as an enemy!", actualWarFee - ingotCount, targetNation.getName()));
+							nationsToRemove.add(targetNation);
+						}
+					}
+					else
+					{
+						nation.addEnemy(targetNation);
+						TownyMessaging.sendNationMessage(targetNation, String.format(TownySettings.getLangString("msg_added_enemy"), nation.getName()));
+						// Remove any ally settings from the target nation
+						if (targetNation.hasAlly(nation))
+							nationAlly(player, targetNation, Arrays.asList(nation), false);
+					}
+				} 
+				else if (add && nation.getEnemies().contains(targetNation))
+				{
+					nationsToRemove.add(targetNation);
+					TownyMessaging.sendErrorMsg(player, String.format("%s is already an enemy of your nation!", targetNation.getName()));
+				}
+				else if (!add && !nation.getEnemies().contains(targetNation))
+				{
+					nationsToRemove.add(targetNation);
+					TownyMessaging.sendErrorMsg(player, String.format("You are already neutral towards %s!", targetNation.getName()));
+				}
+				else if (!add && nation.getEnemies().contains(targetNation)) 
+				{
 					nation.removeEnemy(targetNation);
 					TownyMessaging.sendNationMessage(targetNation, String.format(TownySettings.getLangString("msg_removed_enemy"), nation.getName()));
 				}
-
-			} catch (AlreadyRegisteredException e) {
-				remove.add(targetNation);
-			} catch (NotRegisteredException e) {
-				remove.add(targetNation);
+			} 
+			catch (AlreadyRegisteredException e) 
+			{
+				TownyMessaging.sendErrorMsg(player, TownySettings.getLangString("msg_invalid_name"));
+				nationsToRemove.add(targetNation);
+			} 
+			catch (NotRegisteredException e) 
+			{
+				TownyMessaging.sendErrorMsg(player, TownySettings.getLangString("msg_invalid_name"));
+				nationsToRemove.add(targetNation);
 			}
+		}
 
-		for (Nation newEnemy : remove)
-			enemies.remove(newEnemy);
+		for (Nation nationToRemove : nationsToRemove)
+		{
+			enemies.remove(nationToRemove);	
+		}
 
-		if (enemies.size() > 0) {
+		if (enemies.size() > 0) 
+		{
 			String msg = "";
 
 			for (Nation newEnemy : enemies)
+			{
 				msg += newEnemy.getName() + ", ";
-
+			}
 			msg = msg.substring(0, msg.length() - 2);
+			
 			if (add)
+			{
 				msg = String.format(TownySettings.getLangString("msg_enemy_nations"), player.getName(), msg);
+			}	
 			else
+			{
 				msg = String.format(TownySettings.getLangString("msg_enemy_to_neutral"), player.getName(), msg);
-
+			}
 			TownyMessaging.sendNationMessage(nation, ChatTools.color(msg));
 			TownyUniverse.getDataSource().saveNations();
-
 			plugin.resetCache();
-		} else
-			TownyMessaging.sendErrorMsg(player, TownySettings.getLangString("msg_invalid_name"));
-
+		}
 	}
 
 	public void nationSet(Player player, String[] split) throws TownyException, InvalidNameException {
