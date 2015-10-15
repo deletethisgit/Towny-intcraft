@@ -31,7 +31,7 @@
 		<mkdir dir="${build}"/>
 		<jar jarfile="${build}/${jarname}.jar">
 			<fileset dir="${bin}"/>
-			<fileset dir="./src" includes="ChangeLog.txt, english.yml, german.yml, plugin.yml, spanish.yml, townyperms.yml"/>
+			<fileset dir="./src" includes="ChangeLog.txt, ChangeLog.txt-intcraft, english.yml, german.yml, plugin.yml, spanish.yml, townyperms.yml"/>
 		</jar>
 	</target>
 	
