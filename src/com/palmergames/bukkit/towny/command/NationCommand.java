@@ -50,7 +50,6 @@ import intcraft.util.InventoryHelper;
  */
 
 public class NationCommand extends BaseCommand implements CommandExecutor {
-
 	private static Towny plugin;
 	private static final List<String> nation_help = new ArrayList<String>();
 	private static final List<String> king_help = new ArrayList<String>();
@@ -909,10 +908,11 @@ public class NationCommand extends BaseCommand implements CommandExecutor {
 			{
 				if (add && !nation.getEnemies().contains(targetNation)) 
 				{
+					boolean warFeeEnabled = IntcraftConfig.isWarFeeEnabled();
 					int warFee = IntcraftConfig.getWarFee();
 					int warFeeRatio = IntcraftConfig.getWarFeeRatio();
 					int actualWarFee = warFee - (warFeeRatio * targetNation.getNumResidents());
-					if(actualWarFee > 0)
+					if(warFeeEnabled && actualWarFee > 0)
 					{
 						int warFeeItemCount = InventoryHelper.getItemCount(player, IntcraftConfig.getWarFeeItem());
 						if(warFeeItemCount > actualWarFee)

@@ -18,3 +18,6 @@ alpha_1.0.5:
 	
 alpha_1.0.6:
 	- Seperated ally and nation permissions
+	
+alpha_1.0.7:
+	- Added config node for disabling war fees

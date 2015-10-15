@@ -48,6 +48,7 @@ permissions:
         description: User is able to use all /intcraft debug commands.
         default: op
         children:
+            towny.intcraft.debug.iswarfeeenabled: true
             towny.intcraft.debug.warfee: true
             towny.intcraft.debug.warfeeitem: true
             towny.intcraft.debug.warfeeitemratio: true

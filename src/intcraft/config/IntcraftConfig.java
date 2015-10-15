@@ -7,6 +7,11 @@ import com.palmergames.bukkit.towny.TownySettings;
 
 public class IntcraftConfig
 {
+	public static boolean isWarFeeEnabled()
+	{
+		return TownySettings.getBoolean(ConfigNodes.INTCRAFT_WAR_FEE_ENABLED);
+	}
+	
 	public static int getWarFee() 
 	{
 		return TownySettings.getInt(ConfigNodes.INTCRAFT_WAR_FEE);

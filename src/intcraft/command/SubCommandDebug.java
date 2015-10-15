@@ -15,6 +15,7 @@ public class SubCommandDebug extends SubCommand
 	
 	public SubCommandDebug()
 	{
+		subCommands.put("iswarfeeenabled", new SubCommandDebugIsWarFeeEnabled());
 		subCommands.put("warfee", new SubCommandDebugWarFee());
 		subCommands.put("warfeeitem", new SubCommandDebugWarFeeItem());
 		subCommands.put("warfeeitemratio", new SubCommandDebugWarFeeItemRatio());

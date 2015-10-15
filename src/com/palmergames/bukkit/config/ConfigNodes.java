@@ -1213,13 +1213,17 @@ public enum ConfigNodes {
 			"  # +------------------------------------------------------+ #",
 			"############################################################",
 			""),
+	INTCRAFT_WAR_FEE_ENABLED(
+			"intcraft.war_fee_enabled",
+			"true",
+			"# Are war fees enabled?"),
 	INTCRAFT_WAR_FEE(
 			"intcraft.war_fee",
-			"320",
+			"192",
 			"# Amount of war fee items required to add a nation as an enemy."),
 	INTCRAFT_WAR_FEE_RATIO(
 			"intcraft.war_fee_ratio",
-			"20",
+			"0",
 			"# Subtracts this amount off of the cost of war for every resident in target nation.",
 			"# Eg: war fee - (war fee ratio * number of residents) = actual war fee"),
 	INTCRAFT_WAR_FEE_ITEM(
