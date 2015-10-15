@@ -15,3 +15,6 @@ alpha_1.0.4:
 	
 alpha_1.0.5:
 	- Added NumberFormatException handling to SubCommandDebugRemoveWarFeeItems.java
+	
+alpha_1.0.6:
+	- Seperated ally and nation permissions
