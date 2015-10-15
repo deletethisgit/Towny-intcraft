@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Towny" default="build" basedir=".">
+<project name="Towny" default="dist" basedir=".">
 	<property file="build.properties"/>
-	<property name="stage" value="unknown"/>
-	<property name="version" value="0"/>
 	
-	<property name="jarname" value="Towny-intcraft"/>
-	<property name="src" location="src"/>
-	<property name="bin" location="bin"/>
-	<property name="build" location="build"/>
+	<target name="clean">
+		<delete dir="${build}" deleteonexit="true"/>
+	</target>
 	
-	<target name="init">
-		<mkdir dir="${bin}"/>
+	<target name="init" depends="clean">
+		<mkdir dir="${build}"/>
 	</target>
 
-	<target name="compile" depends="init">
-		<javac srcdir="${src}" destdir="${bin}" includeantruntime="false">
+	<target name="build" depends="init">
+		<javac srcdir="${src}" destdir="${build}" includeantruntime="false">
 			<classpath>
 				<pathelement location="./lib/spigot-1.8.8.jar" />
 				<pathelement location="./lib/bPermissions-2.10.9m.jar" />
@@ -31,15 +28,11 @@
 		</javac>
 	</target>
 
-	<target name="build" depends="compile">
-		<mkdir dir="${build}"/>
-		<jar jarfile="${build}/${jarname}-${stage}_${version}.jar">
-			<fileset dir="${bin}"/>
+	<target name="dist" depends="build">
+		<mkdir dir="${dist}"/>
+		<jar destfile="${dist}/${jarname}-${stage}_${version}.jar">
+			<fileset dir="${build}"/>
 			<fileset dir="${src}" includes="ChangeLog.txt, ChangeLog-intcraft.txt, english.yml, german.yml, plugin.yml, spanish.yml, townyperms.yml"/>
 		</jar>
-	</target>
-	
-	<target name="clean" depends="init">
-		<delete dir="${bin}"/>
 	</target>
 </project>
