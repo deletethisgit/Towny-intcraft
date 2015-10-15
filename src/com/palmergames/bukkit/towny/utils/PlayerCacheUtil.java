@@ -306,7 +306,7 @@ public class PlayerCacheUtil {
 					return TownBlockStatus.PLOT_FRIEND;
 				else if (owner.getTown().getNation().hasResident(resident))
 					return TownBlockStatus.PLOT_NATION;
-				else if (resident.hasTown() && CombatUtil.isAlly(owner.getTown(), resident.getTown()))
+				else if (resident.hasTown() && owner.getTown().getNation().hasAlly(resident.getTown().getNation()))
 					return TownBlockStatus.PLOT_ALLY;
 				else
 					// Exit out and use town permissions
@@ -331,7 +331,7 @@ public class PlayerCacheUtil {
 				// Allied destroy rights
 				if (resident.getTown().getNation().hasTown(town))
 					return TownBlockStatus.TOWN_NATION;
-				if (CombatUtil.isAlly(town, resident.getTown()))
+				if (town.hasNation() && resident.getTown().getNation().hasAlly(town.getNation()))
 					return TownBlockStatus.TOWN_ALLY;
 				else if (CombatUtil.isEnemy(resident.getTown(), town)) {
 					if (townBlock.isWarZone())
@@ -465,7 +465,7 @@ public class PlayerCacheUtil {
 				cacheBlockErrMsg(player, String.format(TownySettings.getLangString("msg_cache_block_error_plot"), "nation", action.toString()));
 				return false;
 				
-			} else if (status == TownBlockStatus.PLOT_ALLY) {
+			} else if (status == TownBlockStatus.PLOT_ALLY && status != TownBlockStatus.PLOT_NATION) {
 				if (townBlock.getPermissions().getAllyPerm(action)) {
 
 					if (townBlock.getType() == TownBlockType.WILDS) {
@@ -570,7 +570,7 @@ public class PlayerCacheUtil {
 			cacheBlockErrMsg(player, String.format(TownySettings.getLangString("msg_cache_block_error_town_nation"), action.toString()));
 			return false;
 
-		} else if (status == TownBlockStatus.TOWN_ALLY) {
+		} else if (status == TownBlockStatus.TOWN_ALLY && status != TownBlockStatus.TOWN_NATION) {
 
 			/*
 			 * Check town overrides before testing town permissions
