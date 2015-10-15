@@ -21,3 +21,6 @@ alpha_1.0.6:
 	
 alpha_1.0.7:
 	- Added config node for disabling war fees
+	
+alpha_1.1.0:
+	- Updated to Towny release 0.90.0.0
