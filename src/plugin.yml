@@ -41,14 +41,13 @@ commands:
 
 permissions:
     towny.intcraft.help:
-        description: Grants access to /intcraft
+        description: User is able to view command help information for all /intcraft commands.
         default: true
 
     towny.intcraft.debug.*:
-        description: Grants all /intcraft debug commands.
+        description: User is permitted to use all /intcraft debug commands.
         default: op
         children:
-            towny.intcraft.debug.help: true
             towny.intcraft.debug.warfee: true
             towny.intcraft.debug.warfeeitem: true
             towny.intcraft.debug.warfeeitemratio: true

@@ -20,7 +20,7 @@ public class SubCommandDebug extends SubCommand
 		subCommands.put("warfeeitemratio", new SubCommandDebugWarFeeItemRatio());
 		subCommands.put("warfeeitemcount", new SubCommandDebugWarFeeItemCount());
 		subCommands.put("removewarfeeitems", new SubCommandDebugRemoveWarFeeItems());
-		subCommands.put("?", new SubCommandDebugHelp(subCommands));
+		subCommands.put("?", new SubCommandHelp("/intcraft debug", subCommands));
 	}
 	
 	@Override

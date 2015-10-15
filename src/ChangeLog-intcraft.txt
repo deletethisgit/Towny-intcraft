@@ -1,8 +1,11 @@
-alpha_v1:
+alpha_1.0.0:
 	- Added war fee requirement for setting a nation as enemy
 	
-alpha_v2:
+alpha_1.0.1:
 	- Added config node for changing the item id used to pay war fees
 	
-alpha_v3:
+alpha_1.0.2:
 	- Refactored subcommands to seperate code in a cleaner manner than done by >townycode
+	
+alpha_1.0.3:
+	- Merged SubCommandHelpDebug and SubCommandHelp into one class

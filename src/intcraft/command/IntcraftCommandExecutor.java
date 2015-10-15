@@ -24,7 +24,7 @@ public class IntcraftCommandExecutor implements CommandExecutor
 	{
 		plugin = instance;
 		subCommands.put("debug", new SubCommandDebug());
-		subCommands.put("?", new SubCommandHelp(subCommands));
+		subCommands.put("?", new SubCommandHelp("/intcraft", subCommands));
 	}
 	
 	@Override

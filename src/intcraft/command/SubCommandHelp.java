@@ -12,15 +12,15 @@ import com.palmergames.bukkit.util.ChatTools;
 
 public class SubCommandHelp extends SubCommand
 {
-	private List<String> intcraft_help;
+	private List<String> help;
 
-	public SubCommandHelp(HashMap<String, SubCommand> subCommands)
+	public SubCommandHelp(String title, HashMap<String, SubCommand> subCommands)
 	{
-		intcraft_help = new ArrayList<String>();
-		intcraft_help.add(ChatTools.formatTitle("/intcraft"));
+		help = new ArrayList<String>();
+		help.add(ChatTools.formatTitle(title));
 		for(SubCommand subCommand : subCommands.values())
 		{
-			intcraft_help.add(subCommand.getHelp());
+			help.add(subCommand.getHelp());
 		}
 	}
 
@@ -52,7 +52,7 @@ public class SubCommandHelp extends SubCommand
 	public void onCommand(CommandSender sender, Command command, String label, String[] args)
 	{
 		Player player = (Player) sender;
-		for (String line : intcraft_help)
+		for (String line : help)
 		{
 			player.sendMessage(line);
 		}
