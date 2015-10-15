@@ -47,7 +47,7 @@ public class SubCommandDebugRemoveWarFeeItems extends SubCommand
 		}
 		else
 		{
-			TownyMessaging.sendErrorMsg(player, getHelp());
+			TownyMessaging.sendErrorMsg(player, "Invalid sub command parameters.");
 		}
 	}
 }

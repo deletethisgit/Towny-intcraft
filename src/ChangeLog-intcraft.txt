@@ -9,3 +9,6 @@ alpha_1.0.2:
 	
 alpha_1.0.3:
 	- Merged SubCommandHelpDebug and SubCommandHelp into one class
+	
+alpha_1.0.4:
+	- Fixed /intcraft debug removewarfeeitems displaying incorrect message
