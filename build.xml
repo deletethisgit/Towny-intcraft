@@ -2,7 +2,8 @@
 <project name="Towny" default="build" basedir=".">
 	<property file="build.properties"/>
 	<property name="stage" value="unknown"/>
-	<property name="stage" value="version"/>
+	<property name="version" value="0"/>
+	
 	<property name="jarname" value="Towny-intcraft"/>
 	<property name="src" location="src"/>
 	<property name="bin" location="bin"/>
