@@ -348,6 +348,7 @@ msg_cache_block_error_wild: '&cNot allowed to %s in the wild.'
 msg_cache_block_error_plot: '&cOwner doesn''t allow %s to %s here.'
 msg_cache_block_error_locked: '&cThis plot is locked!'
 msg_cache_block_error_town_resident: '&cResidents aren''t allowed to %s here.'
+msg_cache_block_error_town_nation: '&cNation members aren''t allowed to %s.'
 msg_cache_block_error_town_allies: '&cAllies aren''t allowed to %s.'
 msg_cache_block_error_town_outsider: '&cOutsiders aren''t allowed to %s.'
 

@@ -1781,7 +1781,7 @@ public class TownCommand extends BaseCommand implements CommandExecutor {
 		if (split.length == 0 || split[0].equalsIgnoreCase("?")) {
 
 			player.sendMessage(ChatTools.formatTitle("/... set perm"));
-			player.sendMessage(ChatTools.formatCommand("Level", "[resident/ally/outsider]", "", ""));
+			player.sendMessage(ChatTools.formatCommand("Level", "[resident/nation/ally/outsider]", "", ""));
 			player.sendMessage(ChatTools.formatCommand("Type", "[build/destroy/switch/itemuse]", "", ""));
 			player.sendMessage(ChatTools.formatCommand("", "set perm", "[on/off]", "Toggle all permissions"));
 			player.sendMessage(ChatTools.formatCommand("", "set perm", "[level/type] [on/off]", ""));
@@ -1838,7 +1838,8 @@ public class TownCommand extends BaseCommand implements CommandExecutor {
 								"residentItemUse", "outsiderBuild",
 								"outsiderDestroy", "outsiderSwitch",
 								"outsiderItemUse", "allyBuild", "allyDestroy",
-								"allySwitch", "allyItemUse" })
+								"allySwitch", "allyItemUse", "nationBuild",
+								"nationDestroy", "nationSwitch", "nationItemUse" })
 							perm.set(element, b);
 					} catch (Exception e) {
 						// invalid entry
@@ -1862,6 +1863,11 @@ public class TownCommand extends BaseCommand implements CommandExecutor {
 						perm.outsiderDestroy = b;
 						perm.outsiderSwitch = b;
 						perm.outsiderItemUse = b;
+					} else if (split[0].equalsIgnoreCase("nation")) {
+						perm.nationBuild = b;
+						perm.nationDestroy = b;
+						perm.nationSwitch = b;
+						perm.nationItemUse = b;
 					} else if (split[0].equalsIgnoreCase("ally")) {
 						perm.allyBuild = b;
 						perm.allyDestroy = b;
@@ -1870,18 +1876,22 @@ public class TownCommand extends BaseCommand implements CommandExecutor {
 					} else if (split[0].equalsIgnoreCase("build")) {
 						perm.residentBuild = b;
 						perm.outsiderBuild = b;
+						perm.nationBuild = b;
 						perm.allyBuild = b;
 					} else if (split[0].equalsIgnoreCase("destroy")) {
 						perm.residentDestroy = b;
 						perm.outsiderDestroy = b;
+						perm.nationDestroy = b;
 						perm.allyDestroy = b;
 					} else if (split[0].equalsIgnoreCase("switch")) {
 						perm.residentSwitch = b;
 						perm.outsiderSwitch = b;
+						perm.nationSwitch = b;
 						perm.allySwitch = b;
 					} else if (split[0].equalsIgnoreCase("itemuse")) {
 						perm.residentItemUse = b;
 						perm.outsiderItemUse = b;
+						perm.nationItemUse = b;
 						perm.allyItemUse = b;
 					}
 

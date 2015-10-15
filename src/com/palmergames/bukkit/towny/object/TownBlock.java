@@ -200,7 +200,7 @@ public class TownBlock {
 			
 		case COMMERCIAL:
 			
-			//setPermissions("residentSwitch,allySwitch,outsiderSwitch");
+			//setPermissions("residentSwitch,nationSwitch,allySwitch,outsiderSwitch");
 			if (this.hasResident()) {
 				setPermissions(this.resident.permissions.toString());
 			} else {
@@ -236,7 +236,7 @@ public class TownBlock {
 
 		case INN:
 			
-			setPermissions("residentSwitch,allySwitch,outsiderSwitch");
+			setPermissions("residentSwitch,nationSwitch,allySwitch,outsiderSwitch");
 			break;
 			
 		}

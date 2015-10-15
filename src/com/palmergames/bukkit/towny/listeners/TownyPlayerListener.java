@@ -674,7 +674,7 @@ public class TownyPlayerListener implements Listener {
 					return cancelState;
 
 				// Allow item_use if we have an override
-				if (((status == TownBlockStatus.TOWN_RESIDENT) && (TownyUniverse.getPermissionSource().hasOwnTownOverride(player, BukkitTools.getTypeId(item), BukkitTools.getDataData(item), TownyPermission.ActionType.ITEM_USE))) || (((status == TownBlockStatus.OUTSIDER) || (status == TownBlockStatus.TOWN_ALLY) || (status == TownBlockStatus.ENEMY)) && (TownyUniverse.getPermissionSource().hasAllTownOverride(player, BukkitTools.getTypeId(item), BukkitTools.getDataData(item), TownyPermission.ActionType.ITEM_USE))))
+				if (((status == TownBlockStatus.TOWN_RESIDENT) && (TownyUniverse.getPermissionSource().hasOwnTownOverride(player, BukkitTools.getTypeId(item), BukkitTools.getDataData(item), TownyPermission.ActionType.ITEM_USE))) || (((status == TownBlockStatus.OUTSIDER) || (status == TownBlockStatus.TOWN_NATION) || (status == TownBlockStatus.TOWN_ALLY) || (status == TownBlockStatus.ENEMY)) && (TownyUniverse.getPermissionSource().hasAllTownOverride(player, BukkitTools.getTypeId(item), BukkitTools.getDataData(item), TownyPermission.ActionType.ITEM_USE))))
 					return cancelState;
 
 				if (status == TownBlockStatus.WARZONE) {

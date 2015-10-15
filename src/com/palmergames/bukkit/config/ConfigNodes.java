@@ -742,6 +742,12 @@ public enum ConfigNodes {
 	FLAGS_RES_FR_DESTROY("default_perm_flags.resident.friend.destroy", "true"),
 	FLAGS_RES_FR_ITEM_USE("default_perm_flags.resident.friend.item_use", "true"),
 	FLAGS_RES_FR_SWITCH("default_perm_flags.resident.friend.switch", "true"),
+	FLAGS_RES_NATION_BUILD("default_perm_flags.resident.nation.build", "false"),
+	FLAGS_RES_NATION_DESTROY("default_perm_flags.resident.nation.destroy", "false"),
+	FLAGS_RES_NATION_ITEM_USE(
+			"default_perm_flags.resident.nation.item_use",
+			"false"),
+	FLAGS_RES_NATION_SWITCH("default_perm_flags.resident.nation.switch", "false"),
 	FLAGS_RES_ALLY_BUILD("default_perm_flags.resident.ally.build", "false"),
 	FLAGS_RES_ALLY_DESTROY("default_perm_flags.resident.ally.destroy", "false"),
 	FLAGS_RES_ALLY_ITEM_USE(
@@ -784,6 +790,10 @@ public enum ConfigNodes {
 	FLAGS_TOWN_RES_DESTROY("default_perm_flags.town.resident.destroy", "true"),
 	FLAGS_TOWN_RES_ITEM_USE("default_perm_flags.town.resident.item_use", "true"),
 	FLAGS_TOWN_RES_SWITCH("default_perm_flags.town.resident.switch", "true"),
+	FLAGS_TOWN_NATION_BUILD("default_perm_flags.town.nation.build", "true"),
+	FLAGS_TOWN_NATION_DESTROY("default_perm_flags.town.nation.destroy", "true"),
+	FLAGS_TOWN_NATION_ITEM_USE("default_perm_flags.town.nation.item_use", "true"),
+	FLAGS_TOWN_NATION_SWITCH("default_perm_flags.town.nation.switch", "true"),
 	FLAGS_TOWN_ALLY_BUILD("default_perm_flags.town.ally.build", "false"),
 	FLAGS_TOWN_ALLY_DESTROY("default_perm_flags.town.ally.destroy", "false"),
 	FLAGS_TOWN_ALLY_ITEM_USE("default_perm_flags.town.ally.item_use", "false"),
