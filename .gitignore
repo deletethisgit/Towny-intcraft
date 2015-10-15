@@ -1,1 +1,5 @@
 /bin
+/.externalToolBuilders
+/build
+/lib
+/libsrc
