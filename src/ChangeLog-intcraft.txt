@@ -3,3 +3,6 @@ alpha_v1:
 	
 alpha_v2:
 	- Added config node for changing the item id used to pay war fees
+	
+alpha_v3:
+	- Refactored subcommands to seperate code in a cleaner manner than done by >townycode

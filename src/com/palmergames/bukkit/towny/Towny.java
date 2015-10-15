@@ -3,7 +3,7 @@ package com.palmergames.bukkit.towny;
 import ca.xshade.bukkit.questioner.Questioner;
 import ca.xshade.questionmanager.Option;
 import ca.xshade.questionmanager.Question;
-import intcraft.command.DebugCommand;
+import intcraft.command.IntcraftCommandExecutor;
 
 import com.earth2me.essentials.Essentials;
 import com.nijiko.permissions.PermissionHandler;
@@ -111,7 +111,7 @@ public class Towny extends JavaPlugin {
 			getCommand("town").setExecutor(new TownCommand(this));
 			getCommand("nation").setExecutor(new NationCommand(this));
 			getCommand("plot").setExecutor(new PlotCommand(this));
-			getCommand("intcraftdebug").setExecutor(new DebugCommand(this));
+			getCommand("intcraft").setExecutor(new IntcraftCommandExecutor(this));
 
 			TownyWar.onEnable();
 

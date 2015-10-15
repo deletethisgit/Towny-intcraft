@@ -33,7 +33,7 @@
 
 	<target name="build" depends="compile">
 		<mkdir dir="${build}"/>
-		<jar jarfile="${build}/${jarname}-${stage}_v${version}.jar">
+		<jar jarfile="${build}/${jarname}-${stage}${version}.jar">
 			<fileset dir="${bin}"/>
 			<fileset dir="./src" includes="ChangeLog.txt, ChangeLog-intcraft.txt, english.yml, german.yml, plugin.yml, spanish.yml, townyperms.yml"/>
 		</jar>

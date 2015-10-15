@@ -30,7 +30,7 @@ commands:
         aliases: [ta]
     townyworld:
         aliases: [tw]
-    intcraftdebug:
+    intcraft:
         aliases: []
 
 ############################################################
@@ -40,9 +40,20 @@ commands:
 ############################################################
 
 permissions:
-    towny.intcraftdebug:
-        description: User is able to use all /intcraftdebug commands.
+    towny.intcraft.help:
+        description: Grants access to /intcraft
+        default: true
+
+    towny.intcraft.debug.*:
+        description: Grants all /intcraft debug commands.
         default: op
+        children:
+            towny.intcraft.debug.help: true
+            towny.intcraft.debug.warfee: true
+            towny.intcraft.debug.warfeeitem: true
+            towny.intcraft.debug.warfeeitemratio: true
+            towny.intcraft.debug.warfeeitemcount: true
+            towny.intcraft.debug.removewarfeeitems: true
 
     towny.admin:
         description: User is able to use /townyadmin, as well as the ability to build/destroy anywhere. User is also able to make towns or nations when set to admin only.
