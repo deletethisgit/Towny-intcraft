@@ -3,7 +3,7 @@ package com.palmergames.bukkit.towny;
 import ca.xshade.bukkit.questioner.Questioner;
 import ca.xshade.questionmanager.Option;
 import ca.xshade.questionmanager.Question;
-import intcraft.DebugCommand;
+import intcraft.command.DebugCommand;
 
 import com.earth2me.essentials.Essentials;
 import com.nijiko.permissions.PermissionHandler;

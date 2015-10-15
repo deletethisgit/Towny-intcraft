@@ -1,4 +1,4 @@
-package intcraft;
+package intcraft.command;
 
 import java.util.ArrayList;
 import java.util.List;
