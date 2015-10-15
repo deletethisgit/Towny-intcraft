@@ -24,7 +24,8 @@ public class DebugCommand implements CommandExecutor
 		INGOT_COUNT("ingotcount", 0, "", "Count the amount of iron ingots in your inventory."),
 		REMOVE_INGOTS("removeingots", 1, " [amount]", "Remove the specified amount of iron ingots from your inventory."),
 		WAR_FEE("warfee", 0, "", "Gets the war fee from the config file."),
-		WAR_FEE_RATIO("warfeeratio", 0, "", "Gets the war fee ratio from the config file.");
+		WAR_FEE_RATIO("warfeeratio", 0, "", "Gets the war fee ratio from the config file."),
+		WAR_FEE_ITEM("warfeeitem", 0, "", "Gets the war fee item from the config file.");
 		
 		private String commandName;
 		private int argCount;
@@ -85,7 +86,7 @@ public class DebugCommand implements CommandExecutor
 		intcraftdebug_help.add(ChatTools.formatTitle("/intcraftdebug"));
 		for(SubCommand subCommand : SubCommand.values())
 		{
-			intcraftdebug_help.add(ChatTools.formatCommand(TownySettings.getLangString("admin_sing"), "/intcraftdebug", subCommand.toString() + subCommand.helpArgs, subCommand.getDescription()));
+			intcraftdebug_help.add(ChatTools.formatCommand(TownySettings.getLangString("admin_sing"), "/intcraftdebug", subCommand.toString() + subCommand.getHelpArgs(), subCommand.getDescription()));
 		}
 	}
 	
@@ -134,7 +135,7 @@ public class DebugCommand implements CommandExecutor
 				}
 				else
 				{
-					TownyMessaging.sendErrorMsg(player, "Eg: /intcraftdebug " + subCommand.toString() + " [quantity]");
+					TownyMessaging.sendErrorMsg(player, "Eg: /intcraftdebug " + subCommand.toString() + subCommand.getHelpArgs());
 				}
 				break;
 			case WAR_FEE:
@@ -159,7 +160,16 @@ public class DebugCommand implements CommandExecutor
 					TownyMessaging.sendErrorMsg(player, "Eg: /intcraftdebug " + subCommand.toString());
 				}
 				break;
-			default:
+			case WAR_FEE_ITEM:
+				if(subCommand.checkArgCount(args)) 
+				{
+					warFeeItem(player);
+					return true;
+				}
+				else
+				{
+					TownyMessaging.sendErrorMsg(player, "Eg: /intcraftdebug " + subCommand.toString());
+				}
 				break;
 			}
 		}
@@ -193,5 +203,11 @@ public class DebugCommand implements CommandExecutor
 	{
 		int warFeeRatio = IntcraftConfig.getWarFeeRatio();
 		TownyMessaging.sendMsg(player, "War fee ratio: " + warFeeRatio);
+	}
+	
+	public void warFeeItem(Player player)
+	{
+		Material warFeeItem = IntcraftConfig.getWarFeeItem();
+		TownyMessaging.sendMsg(player, "War fee item: " + warFeeItem);
 	}
 }

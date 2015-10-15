@@ -915,10 +915,10 @@ public class NationCommand extends BaseCommand implements CommandExecutor {
 					int actualWarFee = warFee - (warFeeRatio * targetNation.getNumResidents());
 					if(actualWarFee > 0)
 					{
-						int ingotCount = InventoryHelper.getItemCount(player, Material.IRON_INGOT);
-						if(ingotCount > actualWarFee)
+						int warFeeItemCount = InventoryHelper.getItemCount(player, IntcraftConfig.getWarFeeItem());
+						if(warFeeItemCount > actualWarFee)
 						{
-							InventoryHelper.removeItems(player, Material.IRON_INGOT, actualWarFee);
+							InventoryHelper.removeItems(player, IntcraftConfig.getWarFeeItem(), actualWarFee);
 							nation.addEnemy(targetNation);
 							TownyMessaging.sendNationMessage(targetNation, String.format(TownySettings.getLangString("msg_added_enemy"), nation.getName()));
 							// Remove any ally settings from the target nation
@@ -927,7 +927,7 @@ public class NationCommand extends BaseCommand implements CommandExecutor {
 						}
 						else
 						{
-							TownyMessaging.sendErrorMsg(player, String.format("Insufficient war funds! You need %s more iron ingots in your inventory to declare %s as an enemy!", actualWarFee - ingotCount, targetNation.getName()));
+							TownyMessaging.sendErrorMsg(player, String.format("Insufficient war funds! You need %s more %s in your inventory before you can declare war on %s!", actualWarFee - warFeeItemCount, IntcraftConfig.getWarFeeItem().toString(),targetNation.getName()));
 							nationsToRemove.add(targetNation);
 						}
 					}

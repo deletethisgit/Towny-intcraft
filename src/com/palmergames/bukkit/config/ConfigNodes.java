@@ -1206,12 +1206,16 @@ public enum ConfigNodes {
 	INTCRAFT_WAR_FEE(
 			"intcraft.war_fee",
 			"320",
-			"# Amount of iron ingots required to add a nation as an enemy."),
+			"# Amount of war fee items required to add a nation as an enemy."),
 	INTCRAFT_WAR_FEE_RATIO(
 			"intcraft.war_fee_ratio",
 			"20",
 			"# Subtracts this amount off of the cost of war for every resident in target nation.",
-			"# Eg: war fee - (war fee ratio * number of residents) = actual war fee");
+			"# Eg: war fee - (war fee ratio * number of residents) = actual war fee"),
+	INTCRAFT_WAR_FEE_ITEM(
+			"intcraft.war_fee_item",
+			"iron_ingot",
+			"# The item ID of the item used to pay war fees.");
 
 	private final String Root;
 	private final String Default;

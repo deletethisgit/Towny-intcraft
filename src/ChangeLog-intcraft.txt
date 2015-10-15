@@ -1,2 +1,5 @@
 alpha_v1:
 	- Added war fee requirement for setting a nation as enemy
+	
+alpha_v2:
+	- Added config node for changing the item id used to pay war fees
