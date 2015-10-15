@@ -8,9 +8,12 @@ import net.citizensnpcs.api.CitizensAPI;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Animals;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.entity.Creature;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
@@ -23,7 +26,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.EntityCombustByEntityEvent;
+import org.bukkit.event.entity.EntityDamageByBlockEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
 import org.bukkit.event.entity.EntityInteractEvent;
@@ -142,12 +147,12 @@ public class TownyEntityListener implements Listener {
 
 		TownyWorld townyWorld = null;
 		
-		Entity entity = event.getEntity();
-				
-		if (entity instanceof ArmorStand) {
+		Entity entity = event.getEntity();		
+		
+		if (entity instanceof ArmorStand || entity instanceof ItemFrame || entity instanceof Animals) {
 			String damager = event.getDamager().getType().name();
 
-			if (damager == "PRIMED_TNT" || damager == "WITHER_SKULL" || damager == "FIREBALL" || damager == "SMALL_FIREBALL" || damager == "LARGE_FIREBALL" || damager == "WITHER") {
+			if (damager == "PRIMED_TNT" || damager == "WITHER_SKULL" || damager == "FIREBALL" || damager == "SMALL_FIREBALL" || damager == "LARGE_FIREBALL" || damager == "WITHER" || damager == "CREEPER") {
 											
 				try {
 					townyWorld = TownyUniverse.getDataSource().getWorld(entity.getWorld().getName());
@@ -766,4 +771,23 @@ public class TownyEntityListener implements Listener {
 		TownyMessaging.sendDebugMsg("onHangingBreak took " + (System.currentTimeMillis() - start) + "ms (" + event.getEventName() + ", " + event.isCancelled() + ")");
 	}
 
+//	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+//	public void onEntityDamageByBlock(EntityDamageByBlockEvent event) {
+//		DamageCause type = event.getCause();
+//		Location loc = event.getDamager().getLocation();
+//		TownyWorld townyWorld = null;
+
+//		if (type == DamageCause.BLOCK_EXPLOSION) {
+//			try {
+//				townyWorld = TownyUniverse.getDataSource().getWorld(loc.getWorld().getName());
+//				if (!locationCanExplode(townyWorld, loc)) {
+//					event.setCancelled(true);
+//					return;
+//				}
+//			} catch (NotRegisteredException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//	}
 }

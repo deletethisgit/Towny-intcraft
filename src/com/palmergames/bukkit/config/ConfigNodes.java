@@ -90,12 +90,12 @@ public enum ConfigNodes {
 			"  #        towny.town.spawn.public : Ability to spawn to unaffilated public towns.",
 			"  #",
 			"  # these will be moved to permissions nodes at a later date"),
-	PERMS_TOWN_CREATION_ADMIN_ONLY(
-			"permissions.town_creation_admin_only",
-			"false"),
-	PERMS_NATION_CREATION_ADMIN_ONLY(
-			"permissions.nation_creation_admin_only",
-			"false"),
+//	PERMS_TOWN_CREATION_ADMIN_ONLY(
+//			"permissions.town_creation_admin_only",
+//			"false"),
+//	PERMS_NATION_CREATION_ADMIN_ONLY(
+//			"permissions.nation_creation_admin_only",
+//			"false"),
 	LEVELS(
 			"levels",
 			"",
@@ -118,7 +118,6 @@ public enum ConfigNodes {
 			"  # +------------------------------------------------------+ #",
 			"  ############################################################",
 			""),
-
 	TOWN_DEF_PUBLIC(
 			"town.default_public",
 			"true",
@@ -127,6 +126,24 @@ public enum ConfigNodes {
 			"town.default_open",
 			"false",
 			"# Default Open status of the town (are new towns open and joinable by anyone at creation?)"),
+	TOWN_DEF_TAXES(
+			"town.default_taxes", "", "# Default tax settings for new towns."),
+	TOWN_DEF_TAXES_TAX(
+			"town.default_taxes.tax",
+			"0.0",
+			"# Default amount of tax of a new town. This must be lower than the economy.daily_taxes.max_tax_percent setting."),
+	TOWN_DEF_TAXES_SHOP_TAX(
+			"town.default_taxes.shop_tax",
+			"0.0",
+			"# Default amount of shop tax of a new town."),
+	TOWN_DEF_TAXES_EMBASSY_TAX(
+			"town.default_taxes.embassy_tax",
+			"0.0",
+			"# Default amount of embassy tax of a new town."),
+	TOWN_DEF_TAXES_TAXPERCENTAGE(
+			"town.default_taxes.taxpercentage",
+			"false",
+			"# Default status of new town's taxpercentage. True means that the default_tax is treated as a percentage instead of a fixed amount."),	
 	TOWN_MAX_PURCHASED_BLOCKS(
 			"town.max_purchased_blocks",
 			"0",
@@ -181,10 +198,10 @@ public enum ConfigNodes {
 			"  # +------------------------------------------------------+ #",
 			"  ############################################################",
 			"",
-			"  # These flags are only used at the initial setp of a new world.",
+			"  # These flags are only used at the initial setup of a new world.",
 			"",
-			" # Once Towny is running each world can be altered from within game",
-			" # using '/townyworld toggle'",
+			"  # Once Towny is running each world can be altered from within game",
+			"  # using '/townyworld toggle'",
 			""),
 
 	NWS_WORLD_USING_TOWNY("new_world_settings.using_towny", "true",
@@ -537,6 +554,9 @@ public enum ConfigNodes {
 	FILTERS_REGEX_NAME_CHECK_REGEX(
 			"filters_colour_chat.regex.name_check_regex",
 			"^[a-zA-Z0-9._\\[\\]-]*$"),
+	FILTERS_REGEX_STRING_CHECK_REGEX(
+			"filters_colour_chat.regex.string_check_regex",
+			"^[a-zA-Z0-9\\s._\\[\\]-]*$"),		
 	FILTERS_REGEX_NAME_REMOVE_REGEX(
 			"filters_colour_chat.regex.name_remove_regex",
 			"[^a-zA-Z0-9._\\[\\]-]"),
@@ -995,7 +1015,38 @@ public enum ConfigNodes {
 			"# If enabled and you set a negative upkeep for the town",
 			"# any funds the town gains via upkeep at a new day",
 			"# will be shared out between the plot owners."),
-
+	JAIL(
+			"jail",
+			"",
+			"",
+			"",
+			"  ############################################################",
+			"  # +------------------------------------------------------+ #",
+			"  # |                 Jail Plot settings                   | #",
+			"  # +------------------------------------------------------+ #",
+			"  ############################################################",
+			""),	
+	JAIL_IS_JAILING_ATTACKING_ENEMIES(
+			"jail.is_jailing_attacking_enemies",
+			"false",
+			"#If true attacking players who die on enemy-town land will be placed into the defending town's jail if it exists."),
+	JAIL_JAIL_ALLOWS_ENDER_PEARLS(
+			"jail.jail_allows_ender_pearls",
+			"false",
+			"#If true jailed players can use Ender Pearls but are still barred from using other methods of teleporting."),
+	JAIL_JAIL_DENIES_TOWN_LEAVE(
+			"jail.jail_denies_town_leave",
+			"false",
+			"#If false jailed players can use /town leave, and escape a jail."),		
+	JAIL_BAIL("jail.bail", "", ""),
+	JAIL_BAIL_IS_ALLOWING_BAIL(
+			"jail.bail.is_allowing_bail",
+			"false",
+			"#If true players can pay a bail amount to be unjailed."),	
+	JAIL_BAIL_BAIL_AMOUNT(
+			"jail.bail.bail_amount",
+			"10",
+			"#Amount that bail costs."),	
 	WAR(
 			"war",
 			"",
@@ -1005,7 +1056,7 @@ public enum ConfigNodes {
 			"  # +------------------------------------------------------+ #",
 			"  # |                     War settings                     | #",
 			"  # +------------------------------------------------------+ #",
-			"############################################################",
+			"  ############################################################",
 			""),
 	WARTIME_NATION_CAN_BE_NEUTRAL(
 			"war.nation_can_be_neutral",

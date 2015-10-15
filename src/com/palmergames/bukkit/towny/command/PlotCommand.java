@@ -332,7 +332,7 @@ public class PlotCommand extends BaseCommand implements CommandExecutor {
 
 						player.sendMessage(ChatTools.formatCommand("", "/plot set", "name", ""));
 						player.sendMessage(ChatTools.formatCommand("", "/plot set", "reset", ""));
-						player.sendMessage(ChatTools.formatCommand("", "/plot set", "shop|embassy|arena|wilds|spleef", ""));
+						player.sendMessage(ChatTools.formatCommand("", "/plot set", "shop|embassy|arena|wilds|spleef|inn|jail", ""));
 						player.sendMessage(ChatTools.formatCommand("", "/plot set perm", "?", ""));
 					}
 
@@ -400,7 +400,7 @@ public class PlotCommand extends BaseCommand implements CommandExecutor {
 			player.sendMessage(ChatTools.formatCommand("", "set perm", "[level] [type] [on/off]", ""));
 			player.sendMessage(ChatTools.formatCommand("", "set perm", "reset", ""));
 			player.sendMessage(ChatTools.formatCommand("Eg", "/plot set perm", "friend build on", ""));
-			player.sendMessage(String.format(TownySettings.getLangString("plot_perms"), "'friend'", ""));
+			player.sendMessage(String.format(TownySettings.getLangString("plot_perms"), "'friend'", "'resident'"));
 			player.sendMessage(TownySettings.getLangString("plot_perms_1"));
 			
 		} else {
@@ -534,7 +534,7 @@ public class PlotCommand extends BaseCommand implements CommandExecutor {
 	 * @throws TownyException
 	 */
 	public void setPlotType(Resident resident, WorldCoord worldCoord, String type) throws TownyException {
-
+		
 		if (resident.hasTown())
 			try {
 				TownBlock townBlock = worldCoord.getTownBlock();
@@ -544,14 +544,32 @@ public class PlotCommand extends BaseCommand implements CommandExecutor {
 													// are only checking for an
 													// exception
 
-				townBlock.setType(type);
+				townBlock.setType(type);		
+				Town town = resident.getTown();
+				if (townBlock.isJail())			
+					town.addJailSpawn(TownyUniverse.getPlayer(resident).getLocation());				
 				
-				//townBlock.setChanged(true);
 				TownyUniverse.getDataSource().saveTownBlock(townBlock);
 
 			} catch (NotRegisteredException e) {
 				throw new TownyException(TownySettings.getLangString("msg_err_not_part_town"));
 			}
+		else if (!resident.hasTown()) {
+			
+			TownBlock townBlock = worldCoord.getTownBlock();
+
+			// Test we are allowed to work on this plot
+			plotTestOwner(resident, townBlock); // ignore the return as we
+												// are only checking for an
+												// exception
+			townBlock.setType(type);		
+			Town town = resident.getTown();
+			if (townBlock.isJail())			
+				town.addJailSpawn(TownyUniverse.getPlayer(resident).getLocation());				
+			
+			TownyUniverse.getDataSource().saveTownBlock(townBlock);
+		
+		}
 		else
 			throw new TownyException(TownySettings.getLangString("msg_err_must_belong_town"));
 	}
@@ -713,11 +731,16 @@ public class PlotCommand extends BaseCommand implements CommandExecutor {
 		
 		if (townBlock.hasResident()) {
 			
-			Resident owner = townBlock.getResident();
-			boolean isSameTown = (resident.hasTown()) ? resident.getTown() == owner.getTown() : false;
-			
+			Resident owner = townBlock.getResident();		
+			if ((!owner.hasTown() 
+					&& (player.hasPermission(PermissionNodes.TOWNY_COMMAND_PLOT_ASMAYOR.getNode())))
+					&& (townBlock.getTown() == resident.getTown()))				
+					return owner;
+					
+			boolean isSameTown = (resident.hasTown()) ? resident.getTown() == owner.getTown() : false;			
 			if ((resident == owner)
 					|| ((isSameTown) && (player.hasPermission(PermissionNodes.TOWNY_COMMAND_PLOT_ASMAYOR.getNode())))
+					|| ((townBlock.getTown() == resident.getTown())) && (player.hasPermission(PermissionNodes.TOWNY_COMMAND_PLOT_ASMAYOR.getNode()))
 					|| isAdmin) {
 				
 				return owner;
