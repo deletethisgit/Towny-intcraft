@@ -40,10 +40,6 @@ commands:
 ############################################################
 
 permissions:
-    towny.intcraft.help:
-        description: User is able to view command help information for all /intcraft commands.
-        default: true
-
     towny.intcraft.warfee.*:
         description: User is able to use all /intcraft warfee commands.
         default: true

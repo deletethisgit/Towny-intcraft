@@ -27,7 +27,7 @@ public class SubCommandWarFee extends SubCommand
 	@Override
 	public String getPermission()
 	{
-		return "towny.intcraft.warfee";
+		return "towny.intcraft.warfee.*";
 	}
 	
 	@Override

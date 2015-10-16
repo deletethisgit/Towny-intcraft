@@ -25,19 +25,23 @@ public abstract class SubCommand
 		}
 		else
 		{
-			if(isPlayerOnly())
-			{
-				if(sender instanceof Player)
-				{
-					onCommand(sender, command, label, args);
-				}
-			}
-			else
+			if(sender instanceof Player)
 			{
 				onCommand(sender, command, label, args);
 			}
+			else
+			{
+				if(!isPlayerOnly())
+				{
+					onCommand(sender, command, label, args);	
+				}
+				else
+				{
+					TownyMessaging.sendErrorMsg(sender, "Only players can use this command!");
+				}
+			}
 		}
-		
+
 		return true;
 	}
 	

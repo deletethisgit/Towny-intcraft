@@ -22,7 +22,7 @@ public class SubCommandDebug extends SubCommand
 	@Override
 	public String getPermission()
 	{
-		return "towny.intcraft.debug";
+		return "towny.intcraft.debug.*";
 	}
 	
 	@Override
