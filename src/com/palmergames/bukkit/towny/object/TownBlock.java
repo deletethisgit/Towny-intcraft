@@ -381,9 +381,9 @@ public class TownBlock {
 		return getWorld().isWarZone(getCoord());
 	}
 
-	public boolean isJail() {
-		
-		if (this.getType() == getType().JAIL) {
+	public boolean isJail() 
+	{		
+		if (this.getType() == TownBlockType.JAIL) {
 			return true;
 		} else {
 			return false;
