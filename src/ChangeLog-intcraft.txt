@@ -33,3 +33,6 @@ alpha_1.1.1:
    
 alpha_1.1.2:
 	- Added 1.8 doors and gates to default switch_ids protection
+	
+release_1.0.0:
+	- Should be stable enough for /int/craft x
