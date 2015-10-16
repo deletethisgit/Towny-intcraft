@@ -19,7 +19,7 @@ public abstract class SubCommand
 	
 	public boolean execute(CommandSender sender, Command command, String label, String[] args)
 	{
-		if(!sender.hasPermission(getPermission()))
+		if(getPermission()!= null && !sender.hasPermission(getPermission()))
 		{
 			TownyMessaging.sendErrorMsg(sender, TownySettings.getLangString("msg_err_command_disable"));
 		}

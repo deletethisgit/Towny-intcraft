@@ -8,7 +8,6 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import com.palmergames.bukkit.towny.TownyMessaging;
 import com.palmergames.bukkit.util.ChatTools;
 
 public class SubCommandHelp extends SubCommand
@@ -57,27 +56,5 @@ public class SubCommandHelp extends SubCommand
 		{
 			player.sendMessage(line);
 		}
-	}
-	
-	//Help subcommands don't require permissions, so we override execute
-	@Override
-	public boolean execute(CommandSender sender, Command command, String label, String[] args)
-	{
-		if(sender instanceof Player)
-		{
-			onCommand(sender, command, label, args);
-		}
-		else
-		{
-			if(!isPlayerOnly())
-			{
-				onCommand(sender, command, label, args);	
-			}
-			else
-			{
-				TownyMessaging.sendErrorMsg(sender, "Only players can use this command!");
-			}
-		}
-		return true;
 	}
 }

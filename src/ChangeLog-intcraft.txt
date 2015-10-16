@@ -40,3 +40,6 @@ release_1.0.0:
 release_1.0.1:
 	- Partially fixed fucked up permissions. Non ops can use actually use /intcraft commands they have access to now.
 	- TODO: still need to fix help subcommands so you can get info of any command even if you don't have access to that command
+	
+release_1.0.2:
+	- Fixed command permissions. Users can now view all command help information via the '?' argument.
