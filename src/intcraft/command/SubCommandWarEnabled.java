@@ -11,28 +11,12 @@ import intcraft.config.IntcraftConfig;
 
 public class SubCommandWarEnabled extends SubCommand
 {
-	@Override
-	public String getPermission()
+	public SubCommandWarEnabled()
 	{
-		return "towny.intcraft.war.enabled";
-	}
-	
-	@Override
-	public String getDescription()
-	{
-		return "Checks if war is enabled.";
-	}
-
-	@Override
-	public String getHelp()
-	{
-		return ChatTools.formatCommand("", "/intcraft", "war enabled", getDescription());
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-		return true;
+		this.setPermission("towny.intcraft.war.enabled");
+		this.setDescription("Checks if war is enabled.");
+		this.setFormattedHelp(ChatTools.formatCommand("", "/intcraft", "war enabled", this.getDescription()));
+		this.setPlayerOnly(true);
 	}
 
 	@Override

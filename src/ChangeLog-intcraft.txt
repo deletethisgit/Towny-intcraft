@@ -46,3 +46,6 @@ release_1.0.2:
 	
 release_1.0.3:
 	- Added config node for disabling war.
+	
+release_1.0.4:
+	- Refactored sub command code.

@@ -14,30 +14,14 @@ import intcraft.util.WarFeeHelper;
 
 public class SubCommandWarFeeGet extends SubCommand
 {
-	@Override
-	public String getPermission()
+	public SubCommandWarFeeGet()
 	{
-		return "towny.intcraft.warfee.get";
+		this.setPermission("towny.intcraft.warfee.get");
+		this.setDescription("Gets the war fee for the specified nation.");
+		this.setFormattedHelp(ChatTools.formatCommand("", "/intcraft", "warfee get [nation]", this.getDescription()));
+		this.setPlayerOnly(true);
 	}
 	
-	@Override
-	public String getDescription()
-	{
-		return "Gets the war fee for the specified nation.";
-	}
-
-	@Override
-	public String getHelp()
-	{
-		return ChatTools.formatCommand("", "/intcraft", "warfee get [nation]", getDescription());
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-		return true;
-	}
-
 	@Override
 	public void onCommand(CommandSender sender, Command command, String label, String[] args)
 	{

@@ -12,30 +12,14 @@ import intcraft.util.InventoryHelper;
 
 public class SubCommandWarFeeItemCount extends SubCommand
 {
-	@Override
-	public String getPermission()
+	public SubCommandWarFeeItemCount()
 	{
-		return "towny.intcraft.warfee.itemcount";
+		this.setPermission("towny.intcraft.warfee.itemcount");
+		this.setDescription("Gets the amount of war fee items in your inventory.");
+		this.setFormattedHelp(ChatTools.formatCommand("", "/intcraft", "warfee itemcount", this.getDescription()));
+		this.setPlayerOnly(true);
 	}
 	
-	@Override
-	public String getDescription()
-	{
-		return "Gets the amount of war fee items in your inventory.";
-	}
-
-	@Override
-	public String getHelp()
-	{
-		return ChatTools.formatCommand("", "/intcraft", "warfee itemcount", getDescription());
-	}
-	
-	@Override
-	public boolean isPlayerOnly()
-	{
-		return true;
-	}
-
 	@Override
 	public void onCommand(CommandSender sender, Command command, String label, String[] args)
 	{

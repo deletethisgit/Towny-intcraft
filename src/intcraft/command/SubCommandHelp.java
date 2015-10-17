@@ -16,36 +16,17 @@ public class SubCommandHelp extends SubCommand
 
 	public SubCommandHelp(String title, HashMap<String, SubCommand> subCommands)
 	{
+		this.setPermission(null);
+		this.setDescription(null);
+		this.setFormattedHelp(null);
+		this.setPlayerOnly(true);
+		
 		help = new ArrayList<String>();
 		help.add(ChatTools.formatTitle(title));
 		for(SubCommand subCommand : subCommands.values())
 		{
-			help.add(subCommand.getHelp());
+			help.add(subCommand.getFormattedHelp());
 		}
-	}
-
-	@Override
-	public String getPermission()
-	{
-		return null;
-	}
-
-	@Override
-	public String getDescription()
-	{
-		return null;
-	}
-
-	@Override
-	public String getHelp()
-	{
-		return null;
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-		return true;
 	}
 
 	@Override

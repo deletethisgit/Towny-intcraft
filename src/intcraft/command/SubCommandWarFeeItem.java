@@ -12,28 +12,12 @@ import intcraft.config.IntcraftConfig;
 
 public class SubCommandWarFeeItem extends SubCommand
 {
-	@Override
-	public String getPermission()
+	public SubCommandWarFeeItem()
 	{
-		return "towny.intcraft.warfee.item";
-	}
-	
-	@Override
-	public String getDescription()
-	{
-		return "Gets the war fee item.";
-	}
-
-	@Override
-	public String getHelp()
-	{
-		return ChatTools.formatCommand("", "/intcraft", "warfee item", getDescription());
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-		return true;
+		this.setPermission("towny.intcraft.warfee.item");
+		this.setDescription("Gets the war fee item.");
+		this.setFormattedHelp(ChatTools.formatCommand("", "/intcraft", "warfee item", this.getDescription()));
+		this.setPlayerOnly(true);
 	}
 
 	@Override

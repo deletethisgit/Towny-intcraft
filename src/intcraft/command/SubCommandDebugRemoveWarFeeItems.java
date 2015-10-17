@@ -13,29 +13,15 @@ import intcraft.util.InventoryHelper;
 
 public class SubCommandDebugRemoveWarFeeItems extends SubCommand
 {
-	@Override
-	public String getPermission()
-	{
-		return "towny.intcraft.debug.removewarfeeitems";
-	}
 	
-	@Override
-	public String getDescription()
+	public SubCommandDebugRemoveWarFeeItems()
 	{
-		return "Removes the specified amount of war fee items from your inventory.";
+		this.setPermission("towny.intcraft.debug.removewarfeeitems");
+		this.setDescription("Removes the specified amount of war fee items from your inventory.");
+		this.setFormattedHelp(ChatTools.formatCommand(TownySettings.getLangString("admin_sing"), "/intcraft", "debug removewarfeeitems [amount]", this.getDescription()));
+		this.setPlayerOnly(true);
 	}
 
-	@Override
-	public String getHelp()
-	{
-		return ChatTools.formatCommand(TownySettings.getLangString("admin_sing"), "/intcraft", "debug removewarfeeitems [amount]", getDescription());
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-		return true;
-	}
 
 	@Override
 	public void onCommand(CommandSender sender, Command command, String label, String[] args)

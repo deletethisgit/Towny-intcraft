@@ -15,32 +15,13 @@ public class SubCommandDebug extends SubCommand
 	
 	public SubCommandDebug()
 	{
+		this.setPermission(null);
+		this.setDescription("List commands related to debugging.");
+		this.setFormattedHelp(ChatTools.formatCommand(TownySettings.getLangString("admin_sing"), "/intcraft", "debug ?", this.getDescription()));
+		this.setPlayerOnly(true);
+		
 		subCommands.put("removewarfeeitems", new SubCommandDebugRemoveWarFeeItems());
 		subCommands.put("?", new SubCommandHelp("/intcraft debug", subCommands));
-	}
-	
-	@Override
-	public String getPermission()
-	{
-		return null;
-	}
-	
-	@Override
-	public String getDescription()
-	{
-		return "List commands related to debugging.";
-	}
-	
-	@Override
-	public String getHelp()
-	{
-		return ChatTools.formatCommand(TownySettings.getLangString("admin_sing"), "/intcraft", "debug ?", getDescription());
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-		return true;
 	}
 	
 	@Override

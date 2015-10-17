@@ -15,32 +15,13 @@ public class SubCommandWar extends SubCommand
 	
 	public SubCommandWar()
 	{
+		this.setPermission(null);
+		this.setDescription("List commands related to war.");
+		this.setFormattedHelp(ChatTools.formatCommand("", "/intcraft", "war ?", this.getDescription()));
+		this.setPlayerOnly(true);
+		
 		subCommands.put("enabled", new SubCommandWarEnabled());
 		subCommands.put("?", new SubCommandHelp("/intcraft war", subCommands));
-	}
-	
-	@Override
-	public String getPermission()
-	{
-		return null;
-	}
-	
-	@Override
-	public String getDescription()
-	{
-		return "List commands related to war.";
-	}
-	
-	@Override
-	public String getHelp()
-	{
-		return ChatTools.formatCommand("", "/intcraft", "war ?", getDescription());
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-		return true;
 	}
 	
 	@Override

@@ -11,28 +11,12 @@ import intcraft.config.IntcraftConfig;
 
 public class SubCommandWarFeeEnabled extends SubCommand
 {
-	@Override
-	public String getPermission()
+	public SubCommandWarFeeEnabled()
 	{
-		return "towny.intcraft.warfee.enabled";
-	}
-	
-	@Override
-	public String getDescription()
-	{
-		return "Checks if war fees are enabled.";
-	}
-
-	@Override
-	public String getHelp()
-	{
-		return ChatTools.formatCommand("", "/intcraft", "warfee enabled", getDescription());
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-		return true;
+		this.setPermission("towny.intcraft.warfee.enabled");
+		this.setDescription("Checks if war fees are enabled.");
+		this.setFormattedHelp(ChatTools.formatCommand("", "/intcraft", "warfee enabled", this.getDescription()));
+		this.setPlayerOnly(true);
 	}
 
 	@Override

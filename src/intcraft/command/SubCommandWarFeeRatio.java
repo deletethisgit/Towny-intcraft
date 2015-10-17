@@ -11,28 +11,12 @@ import intcraft.config.IntcraftConfig;
 
 public class SubCommandWarFeeRatio extends SubCommand
 {
-	@Override
-	public String getPermission()
+	public SubCommandWarFeeRatio()
 	{
-		return "towny.intcraft.warfee.ratio";
-	}
-	
-	@Override
-	public String getDescription()
-	{
-		return "Gets the amount that the war fee is reduced by per resident in target nation.";
-	}
-
-	@Override
-	public String getHelp()
-	{
-		return ChatTools.formatCommand("", "/intcraft", "warfee ratio", getDescription());
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-		return true;
+		this.setPermission("towny.intcraft.warfee.ratio");
+		this.setDescription("Gets the amount that the war fee is reduced by per resident in target nation.");
+		this.setFormattedHelp(ChatTools.formatCommand("", "/intcraft", "warfee ratio", this.getDescription()));
+		this.setPlayerOnly(true);
 	}
 
 	@Override

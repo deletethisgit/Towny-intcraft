@@ -9,13 +9,12 @@ import com.palmergames.bukkit.towny.TownySettings;
 
 public abstract class SubCommand
 {
-	public abstract String getPermission();
+	private String permission;
+	private String description;
+	private String formattedHelp;
+	private boolean playerOnly;
 	
-	public abstract String getDescription();
-	
-	public abstract String getHelp();
-	
-	public abstract boolean isPlayerOnly();
+	public abstract void onCommand(CommandSender sender, Command command, String label, String[] args);
 	
 	public boolean execute(CommandSender sender, Command command, String label, String[] args)
 	{
@@ -37,13 +36,51 @@ public abstract class SubCommand
 				}
 				else
 				{
-					TownyMessaging.sendErrorMsg(sender, "Only players can use this command!");
+					TownyMessaging.sendErrorMsg(sender, TownySettings.getLangString("msg_player_only"));
 				}
 			}
 		}
 
 		return true;
 	}
-	
-	public abstract void onCommand(CommandSender sender, Command command, String label, String[] args);
+
+	public String getPermission()
+	{
+		return permission;
+	}
+
+	public void setPermission(String permission)
+	{
+		this.permission = permission;
+	}
+
+	public String getDescription()
+	{
+		return description;
+	}
+
+	public void setDescription(String description)
+	{
+		this.description = description;
+	}
+
+	public String getFormattedHelp()
+	{
+		return formattedHelp;
+	}
+
+	public void setFormattedHelp(String formattedHelp)
+	{
+		this.formattedHelp = formattedHelp;
+	}
+
+	public boolean isPlayerOnly()
+	{
+		return playerOnly;
+	}
+
+	public void setPlayerOnly(boolean playerOnly)
+	{
+		this.playerOnly = playerOnly;
+	}
 }

@@ -15,6 +15,11 @@ public class SubCommandWarFee extends SubCommand
 	
 	public SubCommandWarFee()
 	{
+		this.setPermission(null);
+		this.setDescription("List commands related to war fees.");
+		this.setFormattedHelp(ChatTools.formatCommand("", "/intcraft", "warfee ?", this.getDescription()));
+		this.setPlayerOnly(true);
+		
 		subCommands.put("enabled", new SubCommandWarFeeEnabled());
 		subCommands.put("base", new SubCommandWarFeeBase());
 		subCommands.put("item", new SubCommandWarFeeItem());
@@ -22,30 +27,6 @@ public class SubCommandWarFee extends SubCommand
 		subCommands.put("itemcount", new SubCommandWarFeeItemCount());
 		subCommands.put("get", new SubCommandWarFeeGet());
 		subCommands.put("?", new SubCommandHelp("/intcraft warfee", subCommands));
-	}
-	
-	@Override
-	public String getPermission()
-	{
-		return null;
-	}
-	
-	@Override
-	public String getDescription()
-	{
-		return "List commands related to war fees.";
-	}
-	
-	@Override
-	public String getHelp()
-	{
-		return ChatTools.formatCommand("", "/intcraft", "warfee ?", getDescription());
-	}
-
-	@Override
-	public boolean isPlayerOnly()
-	{
-		return true;
 	}
 	
 	@Override
