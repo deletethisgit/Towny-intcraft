@@ -303,6 +303,7 @@ public enum PermissionNodes {
 
 	TOWNY_CHAT_TOWN("towny.chat.town"),
 	TOWNY_CHAT_NATION("towny.chat.nation"),
+	TOWNY_CHAT_ALLIES("towny.chat.allies"),
 	TOWNY_CHAT_ADMIN("towny.chat.admin"),
 	TOWNY_CHAT_MOD("towny.chat.mod"),
 	TOWNY_CHAT_GLOBAL("towny.chat.global"),
