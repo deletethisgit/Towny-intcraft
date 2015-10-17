@@ -2,19 +2,16 @@ package intcraft.command;
 
 import java.util.HashMap;
 
-import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import com.palmergames.bukkit.towny.Towny;
 import com.palmergames.bukkit.towny.TownyMessaging;
 import com.palmergames.bukkit.towny.TownySettings;
+import com.palmergames.bukkit.towny.command.BaseCommand;
 
-import intcraft.util.InventoryHelper;
-
-public class IntcraftCommandExecutor implements CommandExecutor
+public class IntcraftCommandExecutor extends BaseCommand implements CommandExecutor
 {	
 	@SuppressWarnings("unused")
 	private static Towny plugin;
@@ -23,8 +20,9 @@ public class IntcraftCommandExecutor implements CommandExecutor
 	public IntcraftCommandExecutor(Towny instance)
 	{
 		plugin = instance;
-		subCommands.put("debug", new SubCommandDebug());
+		subCommands.put("war", new SubCommandWar());
 		subCommands.put("warfee", new SubCommandWarFee());
+		subCommands.put("debug", new SubCommandDebug());
 		subCommands.put("?", new SubCommandHelp("/intcraft", subCommands));
 	}
 	
@@ -55,15 +53,5 @@ public class IntcraftCommandExecutor implements CommandExecutor
 		}
 		
 		return true;	
-	}
-	
-	public void addSubCommand(String name, SubCommand subCommand)
-	{
-		subCommands.put(name, subCommand);
-	}
-
-	public void removeIngots(Player player, int quantity)
-	{
-		InventoryHelper.removeItems(player, Material.IRON_INGOT, quantity);	
 	}
 }

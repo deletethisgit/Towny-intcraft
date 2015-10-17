@@ -40,6 +40,12 @@ commands:
 ############################################################
 
 permissions:
+    towny.intcraft.war*:
+        description: User is able to use all /intcraft war commands.
+        default: true
+        children:
+            towny.intcraft.war.enabled: true
+
     towny.intcraft.warfee.*:
         description: User is able to use all /intcraft warfee commands.
         default: true

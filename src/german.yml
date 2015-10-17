@@ -412,3 +412,10 @@ msg_npc_flag: '&bNPC Flagge ist nun %s für %s.'
 
 msg_admin_only_create_nation: '&cNur Admins ist es erlaubt Nationen zu gruenden.'
 msg_admin_only_create_town: '&cNur Admins ist es erlaubt Staedte zu gruenden.'
+
+# added for /int/craft towny
+msg_war_disabled: 'War is currently disabled!'
+msg_insufficient_warfee_funds: 'Insufficient war funds! You need %s more %s in your inventory before you can declare war on %s!'
+msg_already_enemy: '%s is already an enemy of your nation!'
+msg_already_neutral: 'You are already neutral towards %s!'
+msg_player_only: 'Only players can use this command!'

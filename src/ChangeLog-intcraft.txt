@@ -43,3 +43,6 @@ release_1.0.1:
 	
 release_1.0.2:
 	- Fixed command permissions. Users can now view all command help information via the '?' argument.
+	
+release_1.0.3:
+	- Added config node for disabling war.

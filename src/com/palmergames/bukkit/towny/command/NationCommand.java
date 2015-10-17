@@ -919,6 +919,12 @@ public class NationCommand extends BaseCommand implements CommandExecutor {
 	// what kind of logic flow you want, fam?
 	public void nationEnemy(Player player, Nation ourNation, List<Nation> enemies, boolean add)
 	{
+		if(add && !IntcraftConfig.isWarEnabled())
+		{
+			TownyMessaging.sendErrorMsg(player, TownySettings.getLangString("msg_war_disabled"));
+			return;
+		}
+			
 		ArrayList<Nation> relationNotChangingNations = new ArrayList<Nation>();
 		for (Nation enemyNation : enemies)
 		{
@@ -942,7 +948,7 @@ public class NationCommand extends BaseCommand implements CommandExecutor {
 						}
 						else
 						{
-							TownyMessaging.sendErrorMsg(player, String.format("Insufficient war funds! You need %s more %s in your inventory before you can declare war on %s!", actualWarFee - warFeeItemCount, IntcraftConfig.getWarFeeItem().toString(),enemyNation.getName()));
+							TownyMessaging.sendErrorMsg(player, String.format(TownySettings.getLangString("msg_insufficient_warfee_funds"), actualWarFee - warFeeItemCount, IntcraftConfig.getWarFeeItem().toString(),enemyNation.getName()));
 							relationNotChangingNations.add(enemyNation);
 						}
 					}
@@ -958,12 +964,12 @@ public class NationCommand extends BaseCommand implements CommandExecutor {
 				else if (add && ourNation.getEnemies().contains(enemyNation))
 				{
 					relationNotChangingNations.add(enemyNation);
-					TownyMessaging.sendErrorMsg(player, String.format("%s is already an enemy of your nation!", enemyNation.getName()));
+					TownyMessaging.sendErrorMsg(player, String.format(TownySettings.getLangString("msg_already_enemy"), enemyNation.getName()));
 				}
 				else if (!add && !ourNation.getEnemies().contains(enemyNation))
 				{
 					relationNotChangingNations.add(enemyNation);
-					TownyMessaging.sendErrorMsg(player, String.format("You are already neutral towards %s!", enemyNation.getName()));
+					TownyMessaging.sendErrorMsg(player, String.format(TownySettings.getLangString("msg_already_neutral"), enemyNation.getName()));
 				}
 				else if (!add && ourNation.getEnemies().contains(enemyNation)) 
 				{

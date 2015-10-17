@@ -1,0 +1,72 @@
+package intcraft.command;
+
+import java.util.HashMap;
+
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+
+import com.palmergames.bukkit.towny.TownyMessaging;
+import com.palmergames.bukkit.towny.TownySettings;
+import com.palmergames.bukkit.util.ChatTools;
+
+public class SubCommandWar extends SubCommand
+{
+	private static HashMap<String, SubCommand> subCommands = new HashMap<String, SubCommand>();
+	
+	public SubCommandWar()
+	{
+		subCommands.put("enabled", new SubCommandWarEnabled());
+		subCommands.put("?", new SubCommandHelp("/intcraft war", subCommands));
+	}
+	
+	@Override
+	public String getPermission()
+	{
+		return null;
+	}
+	
+	@Override
+	public String getDescription()
+	{
+		return "List commands related to war.";
+	}
+	
+	@Override
+	public String getHelp()
+	{
+		return ChatTools.formatCommand("", "/intcraft", "war ?", getDescription());
+	}
+
+	@Override
+	public boolean isPlayerOnly()
+	{
+		return true;
+	}
+	
+	@Override
+	public void onCommand(CommandSender sender, Command command, String label, String[] args)
+	{
+		if(args.length >= 2)
+		{
+			boolean match = false;
+			
+			for(String key : subCommands.keySet())
+			{
+				if(key.equals(args[1]))
+				{
+					subCommands.get(key).execute(sender, command, label, args);
+					match = true;
+				}
+			}
+			
+			if(!match)
+			{
+				TownyMessaging.sendErrorMsg(sender, TownySettings.getLangString("msg_err_invalid_sub"));
+			}
+		}
+		else
+		{
+			subCommands.get("?").execute(sender, command, label, args);
+		}
+	}
+}

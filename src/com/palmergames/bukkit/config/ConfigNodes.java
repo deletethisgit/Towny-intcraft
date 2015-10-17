@@ -1256,29 +1256,40 @@ public enum ConfigNodes {
 	INTCRAFT(
 			"intcraft",
 			"",
-			"",
-			"",
-			"  ############################################################",
-			"  # +------------------------------------------------------+ #",
-			"  # |                     /int/craft settings              | #",
-			"  # +------------------------------------------------------+ #",
+			"############################################################",
+			"# +------------------------------------------------------+ #",
+			"# |                  /int/craft settings                 | #",
+			"# +------------------------------------------------------+ #",
 			"############################################################",
 			""),
-	INTCRAFT_WAR_FEE_ENABLED(
-			"intcraft.war_fee_enabled",
+	INTCRAFT_WARENABLED(
+			"intcraft.warenabled",
+			"true",
+			"# Is war enabled?"),
+	INTCRAFT_WARFEE(
+			"intcraft.warfee",
+			"",
+			"############################################################",
+			"# +------------------------------------------------------+ #",
+			"# |              /int/craft War Fee Settings             | #",
+			"# +------------------------------------------------------+ #",
+			"############################################################",
+			""),
+	INTCRAFT_WARFEE_ENABLED(
+			"intcraft.warfee.enabled",
 			"true",
 			"# Are war fees enabled?"),
-	INTCRAFT_WAR_FEE_BASE(
-			"intcraft.war_fee_base",
+	INTCRAFT_WARFEE_BASE(
+			"intcraft.warfee.base",
 			"192",
 			"# Base amount of war fee items required to add a nation as an enemy."),
-	INTCRAFT_WAR_FEE_RATIO(
-			"intcraft.war_fee_ratio",
+	INTCRAFT_WARFEE_RATIO(
+			"intcraft.warfee.ratio",
 			"0",
 			"# Subtracts this amount of items off of the war fee for every resident in the target nation.",
 			"# Eg: actual war fee = base war fee - (war fee ratio * number of residents)"),
-	INTCRAFT_WAR_FEE_ITEM(
-			"intcraft.war_fee_item",
+	INTCRAFT_WARFEE_ITEM(
+			"intcraft.warfee.item",
 			"iron_ingot",
 			"# The bukkit material ID of the item used to pay war fees. If the ID not recognized, it will default to iron ingots.",
 			"# Bukkit material IDs are not exactly the same as vanilla item IDs.",
