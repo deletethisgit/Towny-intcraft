@@ -942,6 +942,8 @@ public class NationCommand extends BaseCommand implements CommandExecutor {
 							InventoryHelper.removeItems(player, IntcraftConfig.getWarFeeItem(), actualWarFee);
 							ourNation.addEnemy(enemyNation);
 							TownyMessaging.sendNationMessage(enemyNation, String.format(TownySettings.getLangString("msg_added_enemy"), ourNation.getName()));
+							enemyNation.addEnemy(ourNation);
+							TownyMessaging.sendNationMessage(ourNation, String.format(TownySettings.getLangString("msg_added_enemy"), enemyNation.getName()));
 							// Remove any ally settings from the target nation
 							if (enemyNation.hasAlly(ourNation))
 								nationAlly(player, enemyNation, Arrays.asList(ourNation), false);
@@ -956,6 +958,8 @@ public class NationCommand extends BaseCommand implements CommandExecutor {
 					{
 						ourNation.addEnemy(enemyNation);
 						TownyMessaging.sendNationMessage(enemyNation, String.format(TownySettings.getLangString("msg_added_enemy"), ourNation.getName()));
+						enemyNation.addEnemy(ourNation);
+						TownyMessaging.sendNationMessage(ourNation, String.format(TownySettings.getLangString("msg_added_enemy"), enemyNation.getName()));
 						// Remove any ally settings from the target nation
 						if (enemyNation.hasAlly(ourNation))
 							nationAlly(player, enemyNation, Arrays.asList(ourNation), false);

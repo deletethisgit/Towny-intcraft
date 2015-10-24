@@ -49,3 +49,6 @@ release_1.0.3:
 	
 release_1.0.4:
 	- Refactored sub command code.
+	
+release_1.0.5:
+	- Made declaring war result in the enemy nation declaring war on you as well, without a warfee requirement
