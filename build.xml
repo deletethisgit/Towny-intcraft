@@ -11,19 +11,20 @@
 	</target>
 
 	<target name="build" depends="init">
-		<javac srcdir="${src}" destdir="${build}" target="1.6" source="1.6" includeantruntime="false">
+		<javac srcdir="${src}" destdir="${build}" target="1.7" source="1.7" includeantruntime="false" debug="true">
 			<classpath>
-				<pathelement location="./lib/spigot-1.8.8.jar" />
-				<pathelement location="./lib/bPermissions-2.10.9m.jar" />
-				<pathelement location="./lib/Essentials-2.x-SNAPSHOT.jar" />
-				<pathelement location="./lib/EssentialsGroupManager.jar" />
-				<pathelement location="./lib/Permissions.jar" />
-				<pathelement location="./lib/PermissionsEx-1.23.3.jar" />
-				<pathelement location="./lib/Register.jar" />
-				<pathelement location="./lib/iConomy.jar" />
-				<pathelement location="./lib/Questioner.jar" />
-				<pathelement location="./lib/Vault.jar" />
-				<pathelement location="./lib/Citizens.jar" />
+				<pathelement location="${lib}/spigot-1.8.8.jar" />
+				<pathelement location="${lib}/bPermissions-2.10.9m.jar" />
+				<pathelement location="${lib}/Essentials-2.x-SNAPSHOT.jar" />
+				<pathelement location="${lib}/EssentialsGroupManager.jar" />
+				<pathelement location="${lib}/Permissions.jar" />
+				<pathelement location="${lib}/PermissionsEx-1.23.3.jar" />
+				<pathelement location="${lib}/Register.jar" />
+				<pathelement location="${lib}/iConomy.jar" />
+				<pathelement location="${lib}/Questioner.jar" />
+				<pathelement location="${lib}/Vault.jar" />
+				<pathelement location="${lib}/Citizens.jar" />
+				<pathelement location="${lib}/intake-4.2-SNAPSHOT.jar" />
 			</classpath>
 		</javac>
 	</target>
@@ -33,6 +34,7 @@
 		<jar destfile="${dist}/${jarname}-${stage}_${version}.jar">
 			<fileset dir="${build}"/>
 			<fileset dir="${src}" includes="ChangeLog.txt, ChangeLog-intcraft.txt, english.yml, german.yml, plugin.yml, spanish.yml, townyperms.yml"/>
+			<zipgroupfileset dir="${lib}" includes="intake-4.2-SNAPSHOT.jar" /> 
 		</jar>
 	</target>
 </project>

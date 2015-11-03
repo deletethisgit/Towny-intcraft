@@ -43,8 +43,8 @@ import ca.xshade.bukkit.questioner.Questioner;
 import ca.xshade.questionmanager.Option;
 import ca.xshade.questionmanager.Question;
 import intcraft.config.IntcraftConfig;
-import intcraft.util.InventoryHelper;
-import intcraft.util.WarFeeHelper;
+import intcraft.util.PlayerInventories;
+import intcraft.util.WarFees;
 
 /**
  * Send a list of all nation commands to player Command: /nation ?
@@ -933,13 +933,13 @@ public class NationCommand extends BaseCommand implements CommandExecutor {
 				if (add && !ourNation.getEnemies().contains(enemyNation)) 
 				{
 					boolean warFeeEnabled = IntcraftConfig.isWarFeeEnabled();
-					int actualWarFee = WarFeeHelper.getActualWarFeeFor(enemyNation);
+					int actualWarFee = WarFees.getTrueWarFee(enemyNation);
 					if(warFeeEnabled && actualWarFee > 0)
 					{
-						int warFeeItemCount = InventoryHelper.getItemCount(player, IntcraftConfig.getWarFeeItem());
+						int warFeeItemCount = PlayerInventories.getItemCount(player, IntcraftConfig.getWarFeeItem());
 						if(warFeeItemCount > actualWarFee)
 						{
-							InventoryHelper.removeItems(player, IntcraftConfig.getWarFeeItem(), actualWarFee);
+							PlayerInventories.removeItems(player, IntcraftConfig.getWarFeeItem(), actualWarFee);
 							ourNation.addEnemy(enemyNation);
 							TownyMessaging.sendNationMessage(enemyNation, String.format(TownySettings.getLangString("msg_added_enemy"), ourNation.getName()));
 							enemyNation.addEnemy(ourNation);

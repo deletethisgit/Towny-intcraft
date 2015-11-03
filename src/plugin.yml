@@ -44,17 +44,13 @@ permissions:
         description: User is able to use all /intcraft war commands.
         default: true
         children:
-            towny.intcraft.war.enabled: true
+            towny.intcraft.war.info: true
 
     towny.intcraft.warfee.*:
         description: User is able to use all /intcraft warfee commands.
         default: true
         children:
-            towny.intcraft.warfee.enabled: true
-            towny.intcraft.warfee.base: true
-            towny.intcraft.warfee.item: true
-            towny.intcraft.warfee.ratio: true
-            towny.intcraft.warfee.itemcount: true
+            towny.intcraft.warfee.info: true
             towny.intcraft.warfee.get: true
 
     towny.intcraft.debug.*:
