@@ -34,7 +34,10 @@
 		<jar destfile="${dist}/${jarname}-${stage}_${version}.jar">
 			<fileset dir="${build}"/>
 			<fileset dir="${src}" includes="ChangeLog.txt, ChangeLog-intcraft.txt, english.yml, german.yml, plugin.yml, spanish.yml, townyperms.yml"/>
-			<zipgroupfileset dir="${lib}" includes="intake-4.2-SNAPSHOT.jar" /> 
+			<manifest>
+				<attribute name="Main-Class" value="${Main_Class}"/>
+				<attribute name="Class-Path" value="lib/intake-4.2-SNAPSHOT.jar"/>
+			</manifest>
 		</jar>
 	</target>
 </project>

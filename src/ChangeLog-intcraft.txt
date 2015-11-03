@@ -55,3 +55,6 @@ release_1.0.5:
 	
 release_1.1.0:
 	- Refactored command code heavily with the superior Intake library created by the author of worldedit
+	
+release_1.1.1:
+	- Took Intake out of jar, added it to classpath in libs folder
