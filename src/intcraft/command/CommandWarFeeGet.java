@@ -20,6 +20,7 @@ import com.sk89q.intake.argument.CommandArgs;
 import com.sk89q.intake.argument.MissingArgumentException;
 import com.sk89q.intake.util.auth.AuthorizationException;
 
+import intcraft.config.IntcraftConfig;
 import intcraft.util.WarFees;
 
 public class CommandWarFeeGet extends IntcraftCommand {
@@ -58,7 +59,7 @@ public class CommandWarFeeGet extends IntcraftCommand {
 			return false;
 		}
 		
-		TownyMessaging.sendMsg(player, nation.getName() + " war fee: " + WarFees.getTrueWarFee(nation));
+		TownyMessaging.sendMsg(player, nation.getName() + " war fee: " + WarFees.getTrueWarFee(nation) + " " + IntcraftConfig.getWarFeeItem());
 		return true;
 	}
 
