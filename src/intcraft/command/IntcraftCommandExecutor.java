@@ -58,9 +58,6 @@ public class IntcraftCommandExecutor extends SimpleDispatcher implements Command
 			return false;
 		}
 		
-		plugin.getLogger().info("inside IntcraftCommandExecutor");
-		plugin.getLogger().info(Joiner.on(" ").join(args));
-		
 		Namespace namespace = new Namespace();
 		namespace.put(CommandSender.class, sender);
 		namespace.put(Towny.class, plugin);
