@@ -146,7 +146,7 @@ public enum ConfigNodes {
 			"# Default status of new town's taxpercentage. True means that the default_tax is treated as a percentage instead of a fixed amount."),	
 	TOWN_MAX_PURCHASED_BLOCKS(
 			"town.max_purchased_blocks",
-			"24",
+			"0",
 			"# Limits the maximum amount of bonus blocks a town can buy."),
 	TOWN_MAX_PLOTS_PER_RESIDENT(
 			"town.max_plots_per_resident",
