@@ -781,6 +781,14 @@ public class TownyFlatFileSource extends TownyDatabaseHandler {
 					} catch (NumberFormatException nfe) {
 					} catch (Exception e) {
 					}
+				
+				line = kvFile.get("lastHomeBlockChange");
+				if (line != null)
+					try {
+						town.setLastHomeBlockChange(Long.parseLong(line));
+					} catch (NumberFormatException nfe) {
+					} catch (Exception e) {
+					}
 
 				/*
 				 * line = kvFile.get("mobs");
@@ -1643,6 +1651,8 @@ public class TownyFlatFileSource extends TownyDatabaseHandler {
 		list.add("open=" + Boolean.toString(town.isOpen()));
 		// PVP
 		list.add("adminDisabledPvP=" + Boolean.toString(town.isAdminDisabledPVP()));
+		// Last Home Block Change
+		list.add("lastHomeBlockChange=" + Long.toString(town.getLastHomeBlockChange()));
 		/* // Mobs
 		* fout.write("mobs=" + Boolean.toString(town.hasMobs()) + newLine);
 		*/

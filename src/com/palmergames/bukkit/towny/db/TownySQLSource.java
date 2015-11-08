@@ -809,6 +809,7 @@ public class TownySQLSource extends TownyFlatFileSource {
 				town.setOpen(rs.getBoolean("open"));
 				town.setPublic(rs.getBoolean("public"));
 				town.setAdminDisabledPVP(rs.getBoolean("admindisabledpvp"));
+				town.setLastHomeBlockChange(rs.getLong("lastHomeBlockChange"));
 
 				town.setPurchasedBlocks(rs.getInt("purchased"));
 
@@ -1497,6 +1498,7 @@ public class TownySQLSource extends TownyFlatFileSource {
 			twn_hm.put("open", town.isOpen());
 			twn_hm.put("public", town.isPublic());
 			twn_hm.put("admindisabledpvp", town.isAdminDisabledPVP());
+			twn_hm.put("lastHomeBlockChange", town.getLastHomeBlockChange());
 
 			//twn_hm.put("townBlocks", utilSaveTownBlocks(new ArrayList<TownBlock>(town.getTownBlocks())));
 			twn_hm.put("homeblock", town.hasHomeBlock() ? town.getHomeBlock().getWorld().getName() + "#" + Integer.toString(town.getHomeBlock().getX()) + "#" + Integer.toString(town.getHomeBlock().getZ()) : "");

@@ -20,6 +20,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import intcraft.config.IntcraftConfig;
+
 public class Town extends TownBlockOwner implements Walled, ResidentList {
 
 	private static final String ECONOMY_ACCOUNT_PREFIX = TownySettings.getTownAccountPrefix();
@@ -41,6 +43,7 @@ public class Town extends TownBlockOwner implements Walled, ResidentList {
 	private Location spawn;
 	private boolean adminDisabledPVP = false; // This is a special setting to make a town ignore All PVP settings and keep PVP disabled.
 	private boolean adminEnabledPVP = false; // This is a special setting to make a town ignore All PVP settings and keep PVP enabled. Overrides the admin disabled too.
+	private long lastHomeBlockChange = 0;
 	
 	public Town(String name) {
 
@@ -275,6 +278,11 @@ public class Town extends TownBlockOwner implements Walled, ResidentList {
 
 		this.adminEnabledPVP = isPVPEnabled;
 	}
+	
+	public void setLastHomeBlockChange(long lastHomeBlockChange) {
+	
+	    this.lastHomeBlockChange = lastHomeBlockChange;
+	}
 
 	public boolean isPVP() {
 
@@ -359,6 +367,11 @@ public class Town extends TownBlockOwner implements Walled, ResidentList {
 		return bonusBlocks;
 	}
 	
+	public long getLastHomeBlockChange() {
+	
+	    return lastHomeBlockChange;
+	}
+	
 	public double getBonusBlockCost() {
 		double nextprice = (Math.pow(TownySettings.getPurchasedBonusBlocksIncreaseValue() , getPurchasedBlocks()) * TownySettings.getPurchasedBonusBlocksCost());
 		return nextprice;
@@ -416,6 +429,32 @@ public class Town extends TownBlockOwner implements Walled, ResidentList {
 	 * @return true if the world/homeblock has changed
 	 * @throws TownyException
 	 */
+    public boolean setHomeBlockWithTimeCheck(TownBlock homeBlock) throws TownyException {
+
+        if (homeBlock == null) {
+			this.homeBlock = null;
+			return false;
+		}
+
+        long now = System.currentTimeMillis()/1000;
+	    int cooldownInterval = IntcraftConfig.getHomeBlockCooldownHours();
+	    long cooldownUnit = 60 * 60; // hour
+	    long cooldownDuration = cooldownUnit * cooldownInterval;
+	    long cooldownExpiration = lastHomeBlockChange + cooldownDuration;
+		if (cooldownExpiration > now) {
+		    long cooldownRemaining = cooldownExpiration - now;
+		    String remainingHours = String.format("%.1f%n", ((float)cooldownRemaining / cooldownUnit));
+		    throw new TownyException(String.format(TownySettings.getLangString("msg_change_home_wait"), Integer.toString(cooldownInterval), remainingHours));
+		}
+
+        return setHomeBlock(homeBlock);
+    }
+
+	/**
+	 * @param homeBlock
+	 * @return true if the world/homeblock has changed
+	 * @throws TownyException
+	 */
 	public boolean setHomeBlock(TownBlock homeBlock) throws TownyException {
 
 		if (homeBlock == null) {
@@ -424,6 +463,7 @@ public class Town extends TownBlockOwner implements Walled, ResidentList {
 		}
 		if (!hasTownBlock(homeBlock))
 			throw new TownyException("Town has no claim over this town block.");
+		this.lastHomeBlockChange = System.currentTimeMillis()/1000;
 		this.homeBlock = homeBlock;
 
 		// Set the world as it may have changed

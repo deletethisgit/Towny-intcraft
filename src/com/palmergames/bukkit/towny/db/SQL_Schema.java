@@ -95,6 +95,7 @@ public class SQL_Schema {
 				+ "`open` bool NOT NULL DEFAULT '0',"
 				+ "`public` bool NOT NULL DEFAULT '0',"
 				+ "`admindisabledpvp` bool NOT NULL DEFAULT '0',"
+				+ "`lastHomeBlockChange` long NOT NULL DEFAULT '0',"
 				+ "`homeblock` mediumtext NOT NULL,"
 				//+ "`townBlocks` mediumtext NOT NULL,"
 				+ "`spawn` mediumtext NOT NULL,"

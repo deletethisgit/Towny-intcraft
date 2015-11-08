@@ -439,6 +439,7 @@ msg_admin_only_create_town: '&cOnly admins are allowed to create towns.'
 
 # added for /int/craft towny
 msg_war_disabled: 'War is currently disabled!'
+msg_change_home_wait: 'You can change homeblock only once per %s hours. You will be able to change it in %s hours.'
 msg_insufficient_warfee_funds: 'Insufficient war funds! You need %s more %s in your inventory before you can declare war on %s!'
 msg_already_enemy: '%s is already an enemy of your nation!'
 msg_already_neutral: 'You are already neutral towards %s!'

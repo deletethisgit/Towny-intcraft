@@ -33,4 +33,8 @@ public class IntcraftConfig
 		return item;
 	}
 	
+	public static int getHomeBlockCooldownHours() {
+        return TownySettings.getInt(ConfigNodes.INTCRAFT_HOME_BLOCK_COOLDOWN_HOURS);
+	}
+	
 }

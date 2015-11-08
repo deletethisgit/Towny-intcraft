@@ -58,3 +58,6 @@ release_1.1.0:
 	
 release_1.1.1:
 	- Took Intake out of jar, added it to classpath in libs folder
+    
+release_1.1.2:
+    - Added Home block change cooldown feature

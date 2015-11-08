@@ -27,6 +27,7 @@ public class IntcraftCommandExecutor extends SimpleDispatcher implements Command
 	
 	private IntcraftDispatcher dispatcherWar;
 	private IntcraftDispatcher dispatcherWarFee;
+	private IntcraftDispatcher dispatcherCooldown;
 	private IntcraftDispatcher dispatcherDebug;
 	
 	public IntcraftCommandExecutor(Towny plugin) {
@@ -40,6 +41,10 @@ public class IntcraftCommandExecutor extends SimpleDispatcher implements Command
 		dispatcherWarFee.registerCommand(new CommandWarFeeInfo(), "info");
 		dispatcherWarFee.registerCommand(new CommandWarFeeGet(), "get");
 		registerCommand(dispatcherWarFee, "warfee");
+		
+		dispatcherCooldown  = new IntcraftDispatcher("hbcooldown");
+		dispatcherCooldown.registerCommand(new CommandHomeBlockCooldownInfo(), "info");
+		registerCommand(dispatcherCooldown, "hbcooldown");		
 		
 		dispatcherDebug = new IntcraftDispatcher("debug");
 		dispatcherDebug.registerCommand(new CommandDebugRemoveWarFeeItems(), "removewarfeeitems");

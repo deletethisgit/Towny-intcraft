@@ -52,6 +52,12 @@ permissions:
         children:
             towny.intcraft.warfee.info: true
             towny.intcraft.warfee.get: true
+            
+    towny.intcraft.hbcooldown.*:
+        description: User is able to use all /intcraft hbcooldown commands.
+        default: true
+        children:
+            towny.intcraft.hbcooldown.info: true
 
     towny.intcraft.debug.*:
         description: User is able to use all /intcraft debug commands.
