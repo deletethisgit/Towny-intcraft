@@ -156,7 +156,7 @@ public class NationCommand extends BaseCommand implements CommandExecutor {
 
 				} else {
 					// TODO: Check if player is an admin
-					newNation(player, split[1], split[2]);
+					// newNation(player, split[1], split[2]);
 				}
 			} else if (split[0].equalsIgnoreCase("leave")) {
 
