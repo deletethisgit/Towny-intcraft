@@ -12,17 +12,17 @@ import com.palmergames.bukkit.towny.exceptions.TownyException;
 import com.palmergames.bukkit.towny.war.flagwar.TownyWar;
 
 public class TownyWarOnlineListener implements Listener {
-    
-    public TownyWarOnlineListener(Towny plugin) {
-    }
-    
-    @EventHandler(priority = EventPriority.LOWEST)
-    public void onPlayerQuit (PlayerQuitEvent event) throws TownyException {
-        
-        Player player = event.getPlayer();   
-        TownyWar.cancelIfNotEnoughPlayers(player);
-        
-    }
-        
+
+	public TownyWarOnlineListener(Towny plugin) {
+	}
+
+	@EventHandler(priority = EventPriority.LOWEST)
+	public void onPlayerQuit (PlayerQuitEvent event) throws TownyException {
+
+		Player player = event.getPlayer();   
+		TownyWar.cancelIfNotEnoughPlayers(player);
+
+	}
+
 }
 

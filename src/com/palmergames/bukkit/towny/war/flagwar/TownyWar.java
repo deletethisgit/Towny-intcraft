@@ -331,38 +331,38 @@ public class TownyWar {
 	}
 	
 	public static void cancelIfNotEnoughPlayers(Player player) throws TownyException {
-            
-    int requiredOnline = TownyWarConfig.getMinPlayersOnlineInTownForWar();
-            
-    // get leaving resident
-    Resident leavingPlayer = TownyUniverse.getDataSource().getResident(player.getName());
 
-    if (leavingPlayer.hasTown())
-    {
-    // check if leaving resident town is under attack
-    List<TownBlock> leavingPlayerBlocks = leavingPlayer.getTown().getTownBlocks();
-        for (TownBlock block : leavingPlayerBlocks)
-        {        
-            Cell cell = new Cell(block.getWorld().getName(), block.getWorldCoord().getX(), block.getWorldCoord().getZ());
-            if (cell.isUnderAttack())
-            {
-                for (Player p : Bukkit.getOnlinePlayers())
-                    p.sendMessage(ChatColor.DARK_RED + "[intcraft] " + ChatColor.YELLOW + "Warning: " + player.getName() + " of " + leavingPlayer.getTown() + " has left the game under siege");
-                Bukkit.getLogger().info("[warlog] " + player.getName() + " of " + leavingPlayer.getTown() + " has left the game under siege");
+		int requiredOnline = TownyWarConfig.getMinPlayersOnlineInTownForWar();
 
-                // if leaving resident's town has not enough players then cancel underattack event
-                int onlinePlayerCount = TownyUniverse.getOnlinePlayers(leavingPlayer.getTown()).size();
-                if (onlinePlayerCount <= requiredOnline)
-                    {
-                        // Town of has not enough players to perform the attack.
-                        for (Player p : Bukkit.getOnlinePlayers())
-                            p.sendMessage(ChatColor.DARK_RED + "[intcraft] " + ChatColor.YELLOW + "Warning: " + player.getName() + " warlogged and " + leavingPlayer.getTown() + " has not enough players to siege it");
-                        Bukkit.getLogger().info("[warlog] " + player.getName() + " warlogged and " + leavingPlayer.getTown() + " has not enough players to siege it");
-                        attackCanceled(cell.getAttackData());
-                    }
-                }
-            }
-        }
-    }
+		// get leaving resident
+		Resident leavingPlayer = TownyUniverse.getDataSource().getResident(player.getName());
+
+		if (leavingPlayer.hasTown())
+		{
+		// check if leaving resident town is under attack
+		List<TownBlock> leavingPlayerBlocks = leavingPlayer.getTown().getTownBlocks();
+			for (TownBlock block : leavingPlayerBlocks)
+			{
+				Cell cell = new Cell(block.getWorld().getName(), block.getWorldCoord().getX(), block.getWorldCoord().getZ());
+				if (cell.isUnderAttack())
+				{
+					for (Player p : Bukkit.getOnlinePlayers())
+						p.sendMessage(ChatColor.DARK_RED + "[intcraft] " + ChatColor.YELLOW + "Warning: " + player.getName() + " of " + leavingPlayer.getTown() + " has left the game under siege");
+					Bukkit.getLogger().info("[warlog] " + player.getName() + " of " + leavingPlayer.getTown() + " has left the game under siege");
+
+					// if leaving resident's town has not enough players then cancel underattack event
+					int onlinePlayerCount = TownyUniverse.getOnlinePlayers(leavingPlayer.getTown()).size();
+					if (onlinePlayerCount <= requiredOnline)
+					{
+						// Town of has not enough players to perform the attack.
+						for (Player p : Bukkit.getOnlinePlayers())
+							p.sendMessage(ChatColor.DARK_RED + "[intcraft] " + ChatColor.YELLOW + "Warning: " + player.getName() + " warlogged and " + leavingPlayer.getTown() + " has not enough players to siege it");
+						Bukkit.getLogger().info("[warlog] " + player.getName() + " warlogged and " + leavingPlayer.getTown() + " has not enough players to siege it");
+						attackCanceled(cell.getAttackData());
+					}
+				}
+			}
+		}
+	}
 	
 }
