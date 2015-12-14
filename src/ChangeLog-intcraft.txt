@@ -64,3 +64,6 @@ release_1.1.2:
     
 release_1.1.3:
     - Fixed new nation exploit for other towns
+    
+release_1.1.4:
+    - War flags are removed if defenders log out below required setting.

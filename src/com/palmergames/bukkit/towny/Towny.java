@@ -21,6 +21,7 @@ import com.palmergames.bukkit.towny.war.flagwar.TownyWar;
 import com.palmergames.bukkit.towny.war.flagwar.listeners.TownyWarBlockListener;
 import com.palmergames.bukkit.towny.war.flagwar.listeners.TownyWarCustomListener;
 import com.palmergames.bukkit.towny.war.flagwar.listeners.TownyWarEntityListener;
+import com.palmergames.bukkit.towny.war.flagwar.listeners.TownyWarOnlineListener;
 import com.palmergames.bukkit.util.BukkitTools;
 import com.palmergames.util.FileMgmt;
 import com.palmergames.util.JavaUtil;
@@ -62,6 +63,7 @@ public class Towny extends JavaPlugin {
 	private final TownyWarBlockListener townyWarBlockListener = new TownyWarBlockListener(this);
 	private final TownyWarCustomListener townyWarCustomListener = new TownyWarCustomListener(this);
 	private final TownyWarEntityListener townyWarEntityListener = new TownyWarEntityListener(this);
+	private final TownyWarOnlineListener townyWarOnlineListener = new TownyWarOnlineListener(this);
 
 	private TownyUniverse townyUniverse;
 
@@ -335,6 +337,7 @@ public class Towny extends JavaPlugin {
 			// Have War Events get launched before regular events.
 			pluginManager.registerEvents(townyWarBlockListener, this);
 			pluginManager.registerEvents(townyWarEntityListener, this);
+			pluginManager.registerEvents(townyWarOnlineListener, this);
 
 			// Manage player deaths and death payments
 			pluginManager.registerEvents(entityMonitorListener, this);
@@ -766,5 +769,13 @@ public class Towny extends JavaPlugin {
 	public TownyWarEntityListener getTownyWarEntityListener() {
 	
 		return townyWarEntityListener;
+	}
+	
+	/**
+	 * @return the townyWarOnlineListener
+	 */
+	public TownyWarOnlineListener getTownyWarOnlineListener() {
+	
+		return townyWarOnlineListener;
 	}
 }
