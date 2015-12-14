@@ -171,7 +171,7 @@ public class TownyWar {
 
 	public static boolean callAttackCellEvent(Towny plugin, Player player, Block block, WorldCoord worldCoord) throws TownyException {
 
-		int topY = block.getWorld().getHighestBlockYAt(block.getX(), block.getZ()) - 1;
+		int topY = block.getWorld().getHighestBlockYAt(block.getX(), block.getZ()) - 10;
 		if (block.getY() < topY)
 			throw new TownyException(TownySettings.getLangString("msg_err_enemy_war_must_be_placed_above_ground"));
 

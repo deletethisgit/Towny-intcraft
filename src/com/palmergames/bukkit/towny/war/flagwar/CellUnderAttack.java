@@ -12,6 +12,12 @@ import com.palmergames.bukkit.towny.Towny;
 import com.palmergames.bukkit.towny.object.Coord;
 import com.palmergames.bukkit.util.BukkitTools;
 
+import com.palmergames.bukkit.towny.object.Town;
+import com.palmergames.bukkit.towny.object.TownyUniverse;
+import com.palmergames.bukkit.towny.TownySettings;
+import com.palmergames.bukkit.towny.exceptions.NotRegisteredException;
+import com.palmergames.util.TimeTools;
+
 public class CellUnderAttack extends Cell {
 
 	private Towny plugin;
@@ -168,10 +174,22 @@ public class CellUnderAttack extends Cell {
 			block.setType(Material.AIR);
 	}
 
-	public void begin() {
+	public void begin() throws NotRegisteredException {
 
 		drawFlag();
-		thread = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new CellAttackThread(this), TownyWarConfig.getTimeBetweenFlagColorChange(), TownyWarConfig.getTimeBetweenFlagColorChange());
+		
+		long time = TownyWarConfig.getTimeBetweenFlagColorChange();
+
+		// overclaimed chunks are conquered instantly
+		Block block = getFlagBaseBlock();
+		Town town = TownyUniverse.getTownBlock(block.getLocation()).getTown();
+		int available = TownySettings.getMaxTownBlocks(town) - town.getTownBlocks().size();
+		if (available < 0)
+		{
+			time = 1;
+		}
+		
+		thread = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new CellAttackThread(this), time, time);
 	}
 
 	public void cancel() {
