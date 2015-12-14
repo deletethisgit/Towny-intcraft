@@ -69,7 +69,7 @@ release_1.1.4:
 	- War flags are removed if defenders log out below required setting.
 
 release_1.1.5:
-	- Overclaimed chunks are conquered instantly
+	- Overclaimed chunks are conquered instantly (commented out, awaiting implementation of config option)
 
 release_1.1.6:
 	- Flag wars can be placed 10 blocks beneath surface

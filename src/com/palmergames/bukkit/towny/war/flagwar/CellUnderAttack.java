@@ -186,7 +186,8 @@ public class CellUnderAttack extends Cell {
 		int available = TownySettings.getMaxTownBlocks(town) - town.getTownBlocks().size();
 		if (available < 0)
 		{
-			time = 1;
+			//disable that feature - for now
+			//time = 1;
 		}
 		
 		thread = plugin.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, new CellAttackThread(this), time, time);
